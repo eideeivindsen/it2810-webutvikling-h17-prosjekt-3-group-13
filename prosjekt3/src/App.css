@@ -9,6 +9,13 @@
     display: flex;
     flex-direction: column;
 }
+.navbar a{
+    text-decoration: none;
+}
+.navbar .active {
+    background-color: #eee;
+}
+
 .menuButton {
     height: calc(100vh/8) !important;
 }
@@ -26,4 +33,8 @@ span.menuButton div {
 .appBar {
     height: 100px;
     padding-top: 15px;
+}
+
+.notFound h1 {
+    text-align: center;
 }
