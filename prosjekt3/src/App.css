@@ -1,0 +1,40 @@
+.navContainer,
+.contentContainer {
+    padding: 0px !important;
+}
+
+.navbar {
+    height: 100vh;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+    display: flex;
+    flex-direction: column;
+}
+.navbar a{
+    text-decoration: none;
+}
+.navbar .active {
+    background-color: #eee;
+}
+
+.menuButton {
+    height: calc(100vh/8) !important;
+}
+span.menuButton  {
+    display: flex !important;
+}
+span.menuButton div {
+    align-self: center;
+}
+
+.navHeader {
+    height: 100px;
+}
+
+.appBar {
+    height: 100px;
+    padding-top: 15px;
+}
+
+.notFound h1 {
+    text-align: center;
+}
