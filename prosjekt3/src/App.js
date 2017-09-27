@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Container, Row, Col } from 'react-grid-system';
+import { Drawer } from 'material-ui';
+import { Container, Row, Col, Visible, Hidden } from 'react-grid-system';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 
@@ -13,13 +14,25 @@ import Navbar from './components/Navbar';
 import NotFound from './components/NotFound';
 
 export default class App extends React.Component {
-  constructor(props) {
+
+constructor(props) {
     super(props);
-    if (localStorage.username) {
-        this.state = {username: localStorage.username}
-    } else {
-        this.state = {username: 'Guest '}
-    }
+    this.state = {
+      username: '',
+      drawerOpen: false,
+    };
+  }
+
+  componentDidMount() {
+      if (localStorage.username) {
+          this.setState({username: localStorage.username});
+      } else {
+          this.setState({username: 'Guest '});
+      }
+  }
+
+  handleDrawerToggle() {
+    this.setState({drawerOpen: !this.state.drawerOpen});
   }
 
   onUsernameChange(newName) {
@@ -34,15 +47,22 @@ export default class App extends React.Component {
             <MuiThemeProvider>
                 <Container fluid={true} className="mainContainer">
                     <Row className="mainRow">
-                        <Col className="navContainer" xs={3} lg={2}>
-                            <Navbar username={this.state.username} />
-                        </Col>
-                        <Col className="contentContainer" xs={9} lg={10}>
+                        <Visible xl lg>
+                            <Col className="navContainer" lg={2}>
+                                <Navbar username={this.state.username} />
+                            </Col>
+                        </Visible>
+                        <Col className="contentContainer" lg={10}>
+                            <Hidden xl lg>
+                                <Drawer open={this.state.drawerOpen}>
+                                    <Navbar username={this.state.username} handleDrawerToggle={this.handleDrawerToggle.bind(this)}/>
+                                </Drawer>
+                            </Hidden>
                             <Switch>
-                                <Route exact path="/" render={() => <Home username={this.state.username} onUsernameChange={this.onUsernameChange.bind(this)}/>} />
-                                <Route path="/events" component={Events} />
-                                <Route path="/notes" component={Notes} />
-                                <Route path="/todo" component={ToDo} />
+                                <Route exact path="/" render={() => <Home username={this.state.username} onUsernameChange={this.onUsernameChange.bind(this)} handleDrawerToggle={this.handleDrawerToggle.bind(this)} />} />
+                                <Route path="/events" render={() => <Events handleDrawerToggle={this.handleDrawerToggle.bind(this)}  />} />
+                                <Route path="/notes" render={() => <Notes handleDrawerToggle={this.handleDrawerToggle.bind(this)} />} />
+                                <Route path="/todo" render={() => <ToDo handleDrawerToggle={this.handleDrawerToggle.bind(this)} />} />
                                 <Route component={NotFound} />
                             </Switch>
                         </Col>

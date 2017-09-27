@@ -17,6 +17,7 @@
 }
 .navbar .active {
     background-color: #eee;
+    border-left: 4px solid #00bcd4;
 }
 
 .menuButton {
@@ -36,6 +37,15 @@ span.menuButton div {
 .navHeader div {
     margin: auto;
 }
+
+.hideMenuButton {
+    margin-bottom: calc(100vh/8);
+    margin-top: auto;
+}
+.hideMenuButton span div:first-child {
+    padding-left: 30px;
+}
+
 /****************************************************/
 
 .container {
