@@ -12,8 +12,22 @@ import ToDo from './components/ToDo';
 import Navbar from './components/Navbar';
 import NotFound from './components/NotFound';
 
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    if (localStorage.username) {
+        this.state = {username: localStorage.username}
+    } else {
+        this.state = {username: 'Guest '}
+    }
+  }
 
-class App extends Component {
+  onUsernameChange(newName) {
+      var name = newName.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+      this.setState({username: name})
+      localStorage.username = name;
+  }
+
   render() {
     return (
         <BrowserRouter>
@@ -21,11 +35,11 @@ class App extends Component {
                 <Container fluid={true} className="mainContainer">
                     <Row className="mainRow">
                         <Col className="navContainer" xs={3} lg={2}>
-                            <Navbar />
+                            <Navbar username={this.state.username} />
                         </Col>
                         <Col className="contentContainer" xs={9} lg={10}>
                             <Switch>
-                                <Route exact path="/" component={Home} />
+                                <Route exact path="/" render={() => <Home username={this.state.username} onUsernameChange={this.onUsernameChange.bind(this)}/>} />
                                 <Route path="/events" component={Events} />
                                 <Route path="/notes" component={Notes} />
                                 <Route path="/todo" component={ToDo} />
@@ -39,5 +53,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

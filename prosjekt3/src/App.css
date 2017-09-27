@@ -1,3 +1,6 @@
+/**************************
+*         Navbar
+**************************/
 .navContainer,
 .contentContainer {
     padding: 0px !important;
@@ -28,6 +31,25 @@ span.menuButton div {
 
 .navHeader {
     height: 100px;
+    display: flex;
+}
+.navHeader div {
+    margin: auto;
+}
+/****************************************************/
+
+.container {
+    margin: 50px !important;
+}
+
+.welcomeCard {
+    transition: all .2s ease-in-out;
+    padding: 100px;
+    margin: 100px;
+    text-align: center;
+}
+.welcomeCard input {
+    text-align: center;
 }
 
 .appBar {

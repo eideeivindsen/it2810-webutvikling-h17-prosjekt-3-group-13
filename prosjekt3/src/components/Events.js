@@ -4,8 +4,11 @@ import AppBar from 'material-ui/AppBar';
 class Events extends Component {
   render() {
     return (
-        <div className="container events">
+        <div className="events">
             <AppBar className="appBar" title="Events" />
+            <div className="container">
+
+            </div>
         </div>
     );
   }
