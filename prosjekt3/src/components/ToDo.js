@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import AppBar from 'material-ui/AppBar';
+import Topbar from './Topbar';
 
 class ToDo extends Component {
   render() {
     return (
         <div className="todo">
-            <AppBar className="appBar" title="To Do" />
+            <Topbar title="To Do" handleDrawerToggle={this.props.handleDrawerToggle.bind(this)} />
             <div className="container">
 
             </div>

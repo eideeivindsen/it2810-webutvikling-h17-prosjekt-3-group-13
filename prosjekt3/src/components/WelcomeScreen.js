@@ -23,7 +23,7 @@ export default class WelcomeScreen extends React.Component {
             <h1>Get started!</h1>
             <br/>
             <p>What	&#39;s your name?</p>
-            <TextField fullWidth={true} value={this.state.nameField} onChange={this.handleChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}/><br />
+            <TextField name="nameField" fullWidth={true} value={this.state.nameField} onChange={this.handleChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}/><br />
         </Card>
     );
   }
