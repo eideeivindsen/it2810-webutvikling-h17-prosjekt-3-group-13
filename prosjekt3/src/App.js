@@ -1,7 +1,7 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Drawer } from 'material-ui';
-import { Container, Row, Col, Visible, Hidden } from 'react-grid-system';
+import { Col, Container, Hidden, Row, Visible } from 'react-grid-system';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 
@@ -39,6 +39,7 @@ constructor(props) {
       var name = newName.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
       this.setState({username: name})
       localStorage.username = name;
+      localStorage.todo = [];
   }
 
   render() {
