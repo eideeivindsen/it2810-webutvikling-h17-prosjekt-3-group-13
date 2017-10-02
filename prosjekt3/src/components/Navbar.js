@@ -27,10 +27,10 @@ export default class Navbar extends React.Component {
               {this.props.username}</ListItem>
           </div>
           <Divider />
-          <NavLink onClick={this.handleTouchTap.bind(this)} exact to="/"><MenuItem className="menuButton" primaryText="Home" leftIcon={<HomeIcon />} /></NavLink>
-          <NavLink onClick={this.handleTouchTap.bind(this)} to="/events"><MenuItem className="menuButton" primaryText="Events" leftIcon={<EventIcon />} /></NavLink>
-          <NavLink onClick={this.handleTouchTap.bind(this)} to="/notes"><MenuItem className="menuButton" primaryText="Notes" leftIcon={<NoteIcon />} /></NavLink>
-          <NavLink onClick={this.handleTouchTap.bind(this)} to="/todo"><MenuItem className="menuButton" primaryText="To do" leftIcon={<ChecklistIcon />} /></NavLink>
+          <NavLink onClick={this.handleTouchTap.bind(this)} exact to={this.props.menuDisabled ? '#' : "/"}><MenuItem className="menuButton" primaryText="Home" leftIcon={<HomeIcon />} /></NavLink>
+          <NavLink onClick={this.handleTouchTap.bind(this)} to={this.props.menuDisabled ? '#' : "/events"}><MenuItem className="menuButton" primaryText="Events" leftIcon={<EventIcon />} /></NavLink>
+          <NavLink onClick={this.handleTouchTap.bind(this)} to={this.props.menuDisabled ? '#' : "/notes"}><MenuItem className="menuButton" primaryText="Notes" leftIcon={<NoteIcon />} /></NavLink>
+          <NavLink onClick={this.handleTouchTap.bind(this)} to={this.props.menuDisabled ? '#' : "/todo"}><MenuItem className="menuButton" primaryText="To do" leftIcon={<ChecklistIcon />} /></NavLink>
           <Hidden xl lg >
               <div className="hideMenuButton">
                   <Divider />

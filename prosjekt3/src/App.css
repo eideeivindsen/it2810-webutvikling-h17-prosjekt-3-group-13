@@ -7,7 +7,7 @@
 }
 
 .navbar {
-    height: 100vh;
+    min-height: 100vh;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
     display: flex;
     flex-direction: column;
@@ -47,9 +47,84 @@ span.menuButton div {
 }
 
 /****************************************************/
+/**************************
+*         Todo
+**************************/
+
+.todoContent {
+    padding: 10px 30px;
+}
+
+.newTask {
+    margin-bottom: 30px;
+    padding: 30px;
+    border-left: 4px solid #00bcd4;
+}
+.newTask div:first-child {
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+}
+.newTaskDate {
+    margin: 0 20px;
+    flex: 1;
+}
+.newTaskButton {
+    margin: 0 20px;
+    flex: 1;
+    height: 36px;
+}
+.newTaskButton div {
+    width: 100% !important;
+}
+.newTaskButton div span {
+    margin: auto !important;
+}
+.newTaskText {
+    margin: 0 20px;
+    flex: 4;
+}
+
+.todo .checked td {
+    text-decoration: line-through;
+}
+
+.deleteIcon:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.todoContent div:first-child {
+    max-height: 35vh;
+}
+
+/****************************************************/
+/**************************
+*         Notes
+**************************/
+.notesList {
+    height: 58vh;
+    border-left: 4px solid #00bcd4;
+}
+
+.notesEditor {
+    border-top: 4px solid #00bcd4;
+    padding: 10px 20px;
+}
+
+.saveNotesButton {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.noteEntry svg:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+/****************************************************/
 
 .container {
-    margin: 50px !important;
+    margin: 75px !important;
 }
 
 .welcomeCard {
