@@ -20,7 +20,7 @@ constructor(props) {
     this.state = {
       username: '',
       drawerOpen: false,
-      menuDisabled: true,
+      menuDisabled: false,
     };
   }
 
@@ -28,7 +28,10 @@ constructor(props) {
       if (localStorage.username) {
           this.setState({username: localStorage.username});
       } else {
-          this.setState({username: 'Guest '});
+          this.setState({
+              username: 'Guest ',
+              menuDisabled: true,
+          });
       }
   }
 
