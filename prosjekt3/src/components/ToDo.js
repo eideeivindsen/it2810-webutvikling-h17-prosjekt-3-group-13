@@ -9,14 +9,13 @@ class ToDo extends Component {
 
 constructor(props) {
     super(props);
-    localStorage.todoCounter === undefined ? localStorage.todoCounter = 0 : null
     this.state = {
       todo: localStorage.todo.length !== 0 ? JSON.parse(localStorage.todo) : [],
       todoCounter: parseInt(localStorage.todoCounter, 10),
       newTask: '',
       newDate: null,
       newTaskMessage: '',
-      yesterdayMessage: 'No tasks.',
+      yesterdayMessage: '',
       todayMessage: '',
       tomorrowMessage: '',
       laterMassage: '',
@@ -24,6 +23,10 @@ constructor(props) {
     };
 
     componentDidMount() {
+        this.tabHasContent();
+    }
+
+    tabHasContent() {
         document.getElementById("yesterdayList").hasChildNodes() ? this.setState({yesterdayMessage: ''}) : this.setState({yesterdayMessage: 'No tasks.'});
         document.getElementById("todayList").hasChildNodes() ? this.setState({todayMessage: ''}) : this.setState({todayMessage: 'No tasks.'});
         document.getElementById("tomorrowList").hasChildNodes() ? this.setState({tomorrowMessage: ''}) : this.setState({tomorrowMessage: 'No tasks.'});
@@ -55,7 +58,8 @@ constructor(props) {
             return element.id !== id;
         });
       this.setState({todo: updatedList }, function() {
-      this.updateLocalStorage();
+          this.updateLocalStorage();
+          this.tabHasContent();
       })
   }
 
@@ -76,12 +80,14 @@ constructor(props) {
           if(this.state.todo.length === 0) {
               this.setState({todo: [newObject], todoCounter: this.state.todoCounter + 1}, function() {
                   this.updateLocalStorage();
+                  this.tabHasContent();
               });
           } else {
               var updatedList = this.state.todo.slice()
               updatedList.push(newObject)
               this.setState({todo: updatedList, todoCounter: this.state.todoCounter + 1}, function() {
                   this.updateLocalStorage();
+                  this.tabHasContent();
               })
           }
           this.setState({newTaskMessage: 'The new task has been added.'});
