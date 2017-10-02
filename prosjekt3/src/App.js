@@ -20,6 +20,7 @@ constructor(props) {
     this.state = {
       username: '',
       drawerOpen: false,
+      menuDisabled: true,
     };
   }
 
@@ -37,9 +38,12 @@ constructor(props) {
 
   onUsernameChange(newName) {
       var name = newName.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-      this.setState({username: name})
+      this.setState({username: name, menuDisabled: false})
       localStorage.username = name;
       localStorage.todo = [];
+      localStorage.notes = [];
+      localStorage.todoCounter = 0;
+      localStorage.notesCounter = 0;
   }
 
   render() {
@@ -50,13 +54,13 @@ constructor(props) {
                     <Row className="mainRow">
                         <Visible xl lg>
                             <Col className="navContainer" lg={2}>
-                                <Navbar username={this.state.username} />
+                                <Navbar username={this.state.username} menuDisabled={this.state.menuDisabled} />
                             </Col>
                         </Visible>
                         <Col className="contentContainer" lg={10}>
                             <Hidden xl lg>
                                 <Drawer open={this.state.drawerOpen}>
-                                    <Navbar username={this.state.username} handleDrawerToggle={this.handleDrawerToggle.bind(this)}/>
+                                    <Navbar username={this.state.username} menuDisabled={this.state.menuDisabled} handleDrawerToggle={this.handleDrawerToggle.bind(this)}/>
                                 </Drawer>
                             </Hidden>
                             <Switch>

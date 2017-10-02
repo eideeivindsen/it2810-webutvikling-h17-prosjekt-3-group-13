@@ -99,6 +99,30 @@ span.menuButton div {
 }
 
 /****************************************************/
+/**************************
+*         Notes
+**************************/
+.notesList {
+    height: 58vh;
+    border-left: 4px solid #00bcd4;
+}
+
+.notesEditor {
+    border-top: 4px solid #00bcd4;
+    padding: 10px 20px;
+}
+
+.saveNotesButton {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.noteEntry svg:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+/****************************************************/
+
 .container {
     margin: 75px !important;
 }
