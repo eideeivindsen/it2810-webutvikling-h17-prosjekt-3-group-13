@@ -144,7 +144,7 @@ class Notes extends Component {
                                 <Divider />
                                 {
                                     sortedNotes.map((note) =>
-                                    <ListItem className="noteEntry" key={note.id} primaryText={note.subject} onClick={() => this.handleEditNote(note)} secondaryText={note.note.slice(0,30).trim() + '...'} rightIcon={<DeleteIcon onClick={() => this.openDialog()}/>} />
+                                    <ListItem className="noteEntry" key={note.id} primaryText={note.subject.slice(0,30).trim()} onClick={() => this.handleEditNote(note)} secondaryText={note.note.slice(0,30).trim() + '...'} rightIcon={<DeleteIcon onClick={() => this.openDialog()}/>} />
                                 )}
                                 <Dialog modal={false} open={this.state.dialogOpen}  onRequestClose={() => this.handleRemove(false)} actions={[
                                           <FlatButton

@@ -1,6 +1,30 @@
-/**************************
-*         Navbar
-**************************/
+body::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 0px;
+	background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar-thumb
+{
+	border-radius: 0px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #00bcd4;
+}
+
+/****************************************************
+*                       Navbar
+*****************************************************/
+.navContainer {
+  height: 100%;
+}
+
 .navContainer,
 .contentContainer {
     padding: 0px !important;
@@ -46,13 +70,32 @@ span.menuButton div {
     padding-left: 30px;
 }
 
-/****************************************************/
-/**************************
-*         Todo
-**************************/
+/****************************************************
+*                       Todo
+*****************************************************/
 
 .todoContent {
     padding: 10px 30px;
+}
+
+.todoContent > div::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.todoContent > div::-webkit-scrollbar
+{
+	width: 8px;
+	background-color: #F5F5F5;
+}
+
+.todoContent > div::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #00bcd4;
 }
 
 .newTask {
@@ -97,14 +140,34 @@ span.menuButton div {
 .todoContent div:first-child {
     max-height: 35vh;
 }
-
-/****************************************************/
-/**************************
-*         Notes
-**************************/
+/****************************************************
+*                       Notes
+*****************************************************/
 .notesList {
     height: 58vh;
+    overflow: scroll;
+    overflow-x: hidden;
     border-left: 4px solid #00bcd4;
+}
+
+.notesList::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.notesList::-webkit-scrollbar
+{
+	width: 8px;
+	background-color: #F5F5F5;
+}
+
+.notesList::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #00bcd4;
 }
 
 .notesEditor {
@@ -121,10 +184,23 @@ span.menuButton div {
     cursor: pointer;
     transform: scale(1.1);
 }
-/****************************************************/
+
+/****************************************************
+*                       General
+*****************************************************/
+
+.mainRow {
+  min-height: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.contentContainer {
+
+}
 
 .container {
-    margin: 75px !important;
+    margin: 75px 75px 0 !important;
 }
 
 .welcomeCard {
