@@ -145,7 +145,6 @@ span.menuButton div {
 *****************************************************/
 .notesList {
     height: 58vh;
-    overflow: scroll;
     overflow-x: hidden;
     border-left: 4px solid #00bcd4;
 }
@@ -200,7 +199,7 @@ span.menuButton div {
 }
 
 .container {
-    margin: 75px 75px 0 !important;
+    margin: 75px 3vw 0 !important;
 }
 
 .welcomeCard {
