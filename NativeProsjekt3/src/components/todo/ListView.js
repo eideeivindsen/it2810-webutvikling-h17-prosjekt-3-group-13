@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableHighlight} from 'react-native';
-import TodoModel from './Todo';
-import OmniBox from './OmniBox';
-import SortableListView from 'react-native-sortable-listview';
-import ListViewItem from './ListViewItem';
-import Utils from './Utils';
+import React, {Component} from "react";
+import {Text, View, TouchableHighlight} from "react-native";
+import TodoModel from "./Todo";
+import OmniBox from "./OmniBox";
+import SortableListView from "react-native-sortable-listview";
+import ListViewItem from "./ListViewItem";
+import Utils from "./Utils";
 
 let dataList = [
-    new TodoModel('Make a Todo App with React Native'),
+    new TodoModel('Make a delete button'),
     new TodoModel('Check to complete a todo'),
     new TodoModel('Long press, drag and drop a todo to sort'),
-    new TodoModel('Save data with Realm'),
-    new TodoModel('Sync data with Firebase')
 ];
 
 var dataListOrder = getOrder(dataList);
