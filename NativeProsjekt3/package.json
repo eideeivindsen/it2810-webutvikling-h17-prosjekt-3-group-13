@@ -11,7 +11,8 @@
 		"react-native": "0.48.4",
 		"react-native-sortable-listview": "^0.2.6",
 		"react-native-vector-icons": "^4.4.0",
-		"react-navigation": "^1.0.0-beta.13"
+		"react-navigation": "^1.0.0-beta.13",
+		"react-timer-mixin": "^0.13.3"
 	},
 	"devDependencies": {
 		"babel-jest": "21.0.2",

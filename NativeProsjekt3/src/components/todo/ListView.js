@@ -72,4 +72,3 @@ class ListView extends Component {
     }
 };
 
-module.exports = ListView;

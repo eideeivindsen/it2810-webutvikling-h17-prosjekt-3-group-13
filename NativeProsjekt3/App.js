@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import UserInput from './src/components/home/Input.js';
-import ListView from './src/components/todo/ListView';
+import TodoApp from './src/components/todo/Todo2';
 
 class HomeTab extends React.Component {
     static navigationOptions = {
@@ -101,7 +101,7 @@ class TodoTab extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <ListView></ListView>
+                <TodoApp/>
             </View>
 
         );
