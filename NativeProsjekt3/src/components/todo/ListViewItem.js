@@ -27,12 +27,11 @@ class ListViewItem extends Component {
         this.props.onCompletedChange(data, this.props.dataIndex);
     }
 
-    _onPressButton(task) {
-        var index = data.indexOf(task);
+    _onDeleteButtonPressed() {
+        var index = this.props.dataIndex;
         if (index > -1) {
-            array.splice(index, 1);
+            super.array.splice(index, 1);
         }
-        this.props.onCompletedChange(data, this.props.dataIndex);
     }
 
     render() {
@@ -47,7 +46,7 @@ class ListViewItem extends Component {
                         <Text style={{fontSize:18, color: color, textDecorationLine: textDecorationLine, paddingRight: 40}}>{data.title}</Text>
                     </View>
                 </TouchableHighlight>
-                <TouchableHighlight onPress={this._onPressButton} underlayColor="white" style={{flex:1, alignItems: 'flex-end'}}>
+                <TouchableHighlight onPress={this._onDeleteButtonPressed} underlayColor="white" style={{flex:1, alignItems: 'flex-end'}}>
                     <View>
                         <Image source={require('../../img/delete.png')} style={{width: 20, height: 20}}></Image>
                     </View>
