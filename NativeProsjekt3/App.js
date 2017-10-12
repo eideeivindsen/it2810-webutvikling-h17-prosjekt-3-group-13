@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import UserInput from './src/components/home/Input.js';
-import TodoApp from './src/components/todo/Todo2';
+import TodoApp from './src/components/todo/Todo';
 
 class HomeTab extends React.Component {
     static navigationOptions = {
