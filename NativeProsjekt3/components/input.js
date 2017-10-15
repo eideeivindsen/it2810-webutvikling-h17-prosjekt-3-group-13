@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, TextInput, View } from 'react-native';
+import { AppRegistry, Text, TextInput, View, Button } from 'react-native';
 
-export default class PizzaTranslator extends Component {
+export default class UserInput extends Component {
     constructor(props) {
         super(props);
         this.state = {text: ''};
     }
-    
+
     render() {
         return (
-                <View style={{padding: 10}}>
-                    <Text>
-                        What is your name?
-                    </Text>
-                    <TextInput
+            <View style={{padding: 10}}>
+                <Text>
+                    What is your name?
+                </Text>
+                <TextInput
                     style={{height: 40}}
-                    placeholder="Type here to translate!"
+                    placeholder="Type in your name here!"
                     onChangeText={(text) => this.setState({text})}
-                    />
-                    <Text style={{padding: 10, fontSize: 42}}>
-                    {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
-                    </Text>
-                </View>
-                );
+                />
+                <Button
+                    onPress={() => { this.state.text = "Hei" + this.state.text + "!"}}
+                    title="Enter "
+                />
+                <Text style={{padding: 10, fontSize: 22}}>
+                    {this.state.text}
+                </Text>
+            </View>
+        );
     }
 }
 
-AppRegistry.registerComponent('PizzaTranslator', () => PizzaTranslator);
+
