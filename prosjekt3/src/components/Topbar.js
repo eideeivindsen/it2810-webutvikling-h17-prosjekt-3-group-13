@@ -1,17 +1,24 @@
 import React from 'react';
 import { AppBar } from 'material-ui';
+import { Hidden, Visible } from 'react-grid-system';
 
 export default class Topbar extends React.Component {
 
 handleTouchTap() {
-    if (window.innerWidth < 992) {
-        this.props.handleDrawerToggle();
-        }
-    }
+    this.props.handleDrawerToggle();
+}
 
-  render() {
+render() {
     return (
-            <AppBar onLeftIconButtonTouchTap={this.handleTouchTap.bind(this)} className="appBar" title={this.props.title} />
+        <div>
+            <Hidden xl lg>
+                <AppBar onLeftIconButtonTouchTap={this.handleTouchTap.bind(this)} className="appBar" title={this.props.title} />
+            </Hidden>
+
+            <Visible xl lg>
+                <AppBar showMenuIconButton={false} className="appBar" title={this.props.title} />
+            </Visible>
+        </div>
     );
   }
 }
