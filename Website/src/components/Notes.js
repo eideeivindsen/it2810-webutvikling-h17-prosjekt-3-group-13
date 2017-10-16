@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Topbar from './Topbar';
-import { Col, Container, Row } from 'react-grid-system';
+import { Col, Container, Row, Hidden, Visible } from 'react-grid-system';
 import { Card, Dialog, Divider, FlatButton, ListItem, RaisedButton, Subheader, TextField } from 'material-ui';
 import AddIcon from 'material-ui/svg-icons/content/add';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
@@ -135,8 +135,8 @@ class Notes extends Component {
             <Topbar title="Notes" handleDrawerToggle={this.props.handleDrawerToggle.bind(this)} />
             <div className="container">
                 <Container fluid={true} onFocus={this.hideMessages.bind(this)} >
-                    <Row className="mainRow">
-                        <Col xs={4} xl={3}>
+                    <Row>
+                        <Col xs={12} md={4}>
                             <Card className="notesList">
                                 <Subheader>Your Notes:</Subheader>
 
@@ -161,9 +161,11 @@ class Notes extends Component {
                                   Are you sure you want do discard the note {'"' + this.state.subject + '"'}?
                                 </Dialog>
                             </Card>
-                            <RaisedButton label="Save Note" primary={true} onClick={this.handleOnSave.bind(this)}className="saveNotesButton"/>
+                            <Visible md lg xl>                                
+                                <RaisedButton label="Save Note" primary={true} onClick={this.handleOnSave.bind(this)}className="saveNotesButton"/>
+                            </Visible>
                         </Col>
-                        <Col xs={8} xl={9}>
+                        <Col xs={12} md={8}>
                             <Card className="notesEditor">
                                 <Subheader>Note:</Subheader>
                                 <TextField floatingLabelText="Subject:" fullWidth={true} value={this.state.subject} onChange={this.handleSubjectChange.bind(this)} /><br />
@@ -181,6 +183,11 @@ class Notes extends Component {
                                     {this.state.showRemovedMessage ? <Subheader>The note has been successfully removed!</Subheader> : null}
                             </Card>
                         </Col>
+                        <Visible xs sm>
+                            <Col xs={12} md={4}>
+                                <RaisedButton label="Save Note" primary={true} onClick={this.handleOnSave.bind(this)}className="saveNotesButton"/>
+                            </Col>
+                        </Visible>
                     </Row>
                 </Container>
             </div>
