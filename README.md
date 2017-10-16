@@ -5,14 +5,14 @@ The first part is a webpage application located in the [website](Website/) folde
 
 # Webpage Application
 
-The website is created using [create-react-app][].
+The website is created using [create-react-app][].<br />
 [Material UI][] is used to give the site an aesthetic and well-designed look.
 
-#### 1. Getting Started
+### 1. Getting Started
 
 To run this example project on your local computer, you will need to have [Node.js][] installed.
 
-#### 2. Installation
+### 2. Installation
 
 Clone this repository, then using a terminal, navigate to the [website](Website/) directory and run the following:
 
@@ -20,7 +20,7 @@ Clone this repository, then using a terminal, navigate to the [website](Website/
 $ npm install
 ```
 
-#### 3. Usage
+### 3. Usage
 
 To start the server, run this command in the folder:
 
