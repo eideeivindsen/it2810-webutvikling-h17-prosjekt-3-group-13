@@ -184,6 +184,16 @@ span.menuButton div {
     transform: scale(1.1);
 }
 
+@media (max-width: 767px) {
+	.notesEditor {
+	    margin-top: 20px;
+	}
+	.notesList {
+		height: auto;
+	    max-height: 40vh;
+	}
+}
+
 /****************************************************
 *                       General
 *****************************************************/

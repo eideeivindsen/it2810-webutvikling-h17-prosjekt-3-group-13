@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Topbar from './Topbar';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
+import { Hidden, Visible } from 'react-grid-system';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import { Card, Checkbox, DatePicker, RaisedButton, Subheader, TextField } from 'material-ui';
 
@@ -115,7 +116,12 @@ constructor(props) {
 
                 <Card className="newTask" onFocus={this.removeMessage.bind(this)}>
                     <TextField className="newTaskText" hintText="Create a task..." value={this.state.newTask} onChange={this.handleNewTaskChange.bind(this)}/>
-                    <DatePicker className="newTaskDate" hintText="Choose Date" mode="landscape" value={this.state.newDate} onChange={this.handleNewDateChange.bind(this)}/>
+                        <Visible xl lg>
+                            <DatePicker className="newTaskDate" hintText="Choose Date" mode="landscape" value={this.state.newDate} onChange={this.handleNewDateChange.bind(this)}/>
+                        </Visible>
+                        <Hidden xl lg>
+                            <DatePicker className="newTaskDate" hintText="Choose Date" mode="portrait" value={this.state.newDate} onChange={this.handleNewDateChange.bind(this)}/>
+                        </Hidden>
                     <RaisedButton className="newTaskButton" label="Add Task" primary={true} onClick={this.handleNewTaskSubmit.bind(this)} />
                     <Subheader>{this.state.newTaskMessage}</Subheader>
                 </Card>
