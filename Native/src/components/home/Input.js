@@ -3,53 +3,75 @@ import { AsyncStorage, Text, View, TextInput, StyleSheet, Button, TouchableHighl
 
 export default class UserInput extends Component {
     state = {
-        'name': ''
+        'username': '',
+        'nameSat': false
     };
     componentDidMount = () => AsyncStorage.getItem('name').then((value) => this.setState({ 'name': value }));
 
-    setName = (value) => {
-        AsyncStorage.setItem('name', value);
-        this.setState({ 'name': value });
-    }
 
-    _onPressButton () {
+
+    _onPressButton(value) {
         // Get the data
-        let name = this.state.name
-
-
-        // Retrieve the existing messages
-        AsyncStorage.getItem('name', (res) => {
-            var username;
-
-            // If this is the first time, set up a new array
-            if (res === null) {
-                username = []
-            }else {
-                username = JSON.parse(res)
-            }
-
-            // Add the new message
-            username.push({
-                name: name,
-            })
-
-            // Save the messages
-            AsyncStorage.setItem('name', JSON.stringify(username), (res) => {});
-        })
+        let username = this.state.username;
+        AsyncStorage.setItem('name', username);
+        this.setState({ 'name': username });
     }
 
     render() {
         return (
-            <View>
-                <TextInput autoCapitalize = 'none'
-                           onChangeText = {this.setName}/>
-                <TouchableHighlight onPress={this._onPressButton.bind(this)}>
-                    <Text>Add</Text>
-                </TouchableHighlight>
-                <Text>
+            <View style={styles.container}>
+                <Text style={styles.todoItem}>
                     {this.state.name}
                 </Text>
+                <TextInput autoCapitalize = 'none'
+                           ref={(el) => {this.username = el;}}
+                           //onChangeText = {this.setName}
+                           onChangeText={(username) => this.setState({username})}
+                           value={this.state.username}
+                           style={styles.inputForm}
+                           placeholder={"Enter your name"}
+                />
+                <Button onPress={this._onPressButton.bind(this)} title={"Add"}>
+                </Button>
+
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: 30,
+    },
+    formView: {
+        borderBottomWidth: 1,
+        borderColor: '#ccc',
+        paddingBottom: 8,
+    },
+    inputForm: {
+        flex: 1,
+        alignItems: 'center',
+
+
+        padding: 8,
+        marginBottom: 8,
+    },
+    todoItem: {
+        fontSize: 30,
+        alignItems: 'center',
+        padding: 8,
+
+        borderBottomWidth: 1.5,
+        borderColor: '#e0e0e0',
+
+        flex: 1,
+        flexDirection: 'row',
+    },
+    todoText: {
+        flex: 1,
+    },
+
+});
