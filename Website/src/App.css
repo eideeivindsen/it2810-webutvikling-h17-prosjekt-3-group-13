@@ -195,6 +195,113 @@ span.menuButton div {
 }
 
 /****************************************************
+*                       Homepage
+*****************************************************/
+.home .container {
+	margin-top: 40px !important;
+}
+
+.homeTodo {
+	min-height: 300px;
+	border-left: 4px solid #00bcd4;
+}
+
+.homeTodoButton {
+	width: 100%;
+}
+
+.homeNotesButton {
+	width: 80%;
+	display: block !important;
+	margin: auto;
+	border-radius: 50px !important;
+}
+.homeNotesButton,
+.homeNotesButton button,
+.homeNotesButton button div {
+	height: 50px !important;
+	border-radius: 40px !important;
+}
+
+.homeTodoButton,
+.homeTodoButton button,
+.homeTodoButton button div {
+	height: 50px !important;
+}
+.homeTodoButton button div span,
+.homeNotesButton button div span {
+	display: block;
+	padding-top: 7px;
+}
+
+.homeTodo .checked td {
+    text-decoration: line-through;
+}
+
+.home .container  h1 {
+    color: rgba(0,0,0,.7);
+	font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+	width: 100%;
+	text-align: center;
+	margin: 0 0 30px 0;
+}
+.home .container h2 {
+	color: rgba(0,0,0,.7);
+	font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    width: 100%;
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+
+.home .frontIcons {
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 50px;
+	flex-wrap: wrap;
+}
+.home .frontIcons a{
+	height: 155px;
+	min-width: 100px;
+	width: 28%;
+	background-color: #fff;
+	border-bottom: 4px solid #00bcd4;
+	text-decoration: none;
+	transition: all .1s ease-in-out;
+}
+
+.home .frontIcons a:hover{
+	cursor: pointer;
+	transform: scale(1.02);
+}
+
+.home .frontIcons div h2 {
+	margin-top: 20px;
+	color: rgba(0, 0, 0, 0.54);
+	font-weight: 500;
+
+}
+
+.home .frontIcons svg {
+	display: block;
+	margin-top: 30px;
+	height: 50px !important;
+	width: 100% !important;
+	color: rgba(0, 0, 0, 0.54) !important;
+}
+
+@media (max-width: 767px) {
+	.homeTodoContainer {
+		margin-bottom: 50px;
+	}
+}
+
+
+/****************************************************
 *                       General
 *****************************************************/
 

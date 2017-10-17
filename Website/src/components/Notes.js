@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Topbar from './Topbar';
-import { Col, Container, Row, Hidden, Visible } from 'react-grid-system';
+import { Col, Container, Row, Visible } from 'react-grid-system';
 import { Card, Dialog, Divider, FlatButton, ListItem, RaisedButton, Subheader, TextField } from 'material-ui';
 import AddIcon from 'material-ui/svg-icons/content/add';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
@@ -161,7 +161,7 @@ class Notes extends Component {
                                   Are you sure you want do discard the note {'"' + this.state.subject + '"'}?
                                 </Dialog>
                             </Card>
-                            <Visible md lg xl>                                
+                            <Visible md lg xl>
                                 <RaisedButton label="Save Note" primary={true} onClick={this.handleOnSave.bind(this)}className="saveNotesButton"/>
                             </Visible>
                         </Col>
