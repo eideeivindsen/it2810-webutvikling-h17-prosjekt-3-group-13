@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Col, Container, Row } from 'react-grid-system';
 import {Card, RaisedButton, Subheader } from 'material-ui';
 import { Link, NavLink } from 'react-router-dom';
@@ -7,13 +7,14 @@ import { Link, NavLink } from 'react-router-dom';
 import WelcomeScreen from './WelcomeScreen';
 import Topbar from './Topbar';
 import HomeScreenTodo from './HomeScreenTodo';
+import HomeScreenEvents from './HomeScreenEvents';
 
 import EventIcon from 'material-ui/svg-icons/action/event';
 import NoteIcon from 'material-ui/svg-icons/av/note';
 import ChecklistIcon from 'material-ui/svg-icons/av/playlist-add-check';
 const Logo = require('./../img/logo.png');
 
-export default class Home extends React.Component {
+class Home extends Component {
 
   render() {
     return (
@@ -46,10 +47,8 @@ export default class Home extends React.Component {
                         <Col  xs={12} md={5}>
                             <HomeScreenTodo/>
                         </Col>
-                        <Col className="contentContainer" xs={12} md={7}>
-                            <Card>
-                                <Subheader>Torkil sin kolonne</Subheader>
-                            </Card>
+                        <Col className="contentContainer" xs={12} md={6} offset={{ md: 1 }}>
+                          <HomeScreenEvents/>
                         </Col>
                     </Row>
                 </Container>
@@ -59,3 +58,5 @@ export default class Home extends React.Component {
     );
   }
 }
+
+export default Home;
