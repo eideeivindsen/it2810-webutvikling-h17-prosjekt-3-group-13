@@ -8,8 +8,9 @@ import {
     Image,
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-import UserInput from './src/components/home/Input.js';
+import UserInput from './src/components/home/Input';
 import TodoApp from './src/components/todo/Todo';
+import ListView from './src/components/todo2/ListView';
 
 class HomeTab extends React.Component {
     static navigationOptions = {
@@ -101,7 +102,7 @@ class TodoTab extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <TodoApp/>
+                <ListView/>
             </View>
 
         );
@@ -126,6 +127,15 @@ const styles = StyleSheet.create({
         icon: {
             width: 26,
             height: 26,
+        },
+        container: {
+            flex: 1,
+            justifyContent: 'center',
+            paddingTop: 30,
+            paddingBottom: 10,
+            paddingLeft: 2,
+            paddingRight: 2,
+            backgroundColor: '#F8F8F8',
         }
 
     }

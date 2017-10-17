@@ -2,19 +2,46 @@ import React, { Component } from 'react';
 import { AsyncStorage, Text, View, TextInput, StyleSheet, Button, TouchableHighlight } from 'react-native'
 
 export default class UserInput extends Component {
-    state = {
-        'username': '',
-        'nameSat': false
-    };
-    componentDidMount = () => AsyncStorage.getItem('name').then((value) => this.setState({ 'name': value }));
+    constructor(props) {
+        super(props);
+        this.state = {
+            'name': '',
+        };
+    }
 
+
+    componentDidMount() {
+        if (AsyncStorage.getItem('username') != null) {
+            AsyncStorage.getItem('username').then((value) => this.setState({ 'name': value }));
+        } else {
+            this.setState({'name': "Guest"});
+        }
+
+
+
+        //const someArray = ["Make a list","Dance","Jump","Die react native"];
+        //return AsyncStorage.setItem('todo', JSON.stringify(someArray))
+        //    .then(json => console.log('success!'))
+        //    .catch(error => console.log('error!'));
+
+
+
+        //AsyncStorage.setItem('todo', JSON.stringify(["Bob", "Peter", "My Todo list"]));
+    }
+
+    //AsyncStorage.getItem('todo').then((value) => this.setState({'mylist': JSON.parse(value)}))
 
 
     _onPressButton(value) {
         // Get the data
         let username = this.state.username;
-        AsyncStorage.setItem('name', username);
+        AsyncStorage.setItem('username', username);
         this.setState({ 'name': username });
+
+        AsyncStorage.setItem('notes', JSON.stringify([]));
+        AsyncStorage.setItem('todoCounter', JSON.stringify(0));
+        AsyncStorage.setItem('notesCounter', JSON.stringify(0));
+
     }
 
     render() {
