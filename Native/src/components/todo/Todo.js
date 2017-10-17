@@ -1,17 +1,55 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TextInput, Button, ListView, TouchableHighlight, TouchableWithoutFeedback} from 'react-native';
+import {
+    Text,
+    View,
+    StyleSheet,
+    TextInput,
+    Button,
+    ListView,
+    TouchableHighlight,
+    TouchableWithoutFeedback,
+    AsyncStorage} from 'react-native';
+
+export const todoItemDS = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.id !== r2.id})
+//const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+function getData() {
+    var list = [];
+    AsyncStorage.getItem('todo').then((data) => {
+        //alert(JSON.parse(data));
+        list.push(JSON.parse(data));
+    });
+    return list;
+}
 
 export default class App extends Component {
     constructor(props) {
         super(props);
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        var data = AsyncStorage.getItem('todo').then((value) => this.setState({'dataSource': JSON.parse(value)}));
         this.state = {
             inputValue: '',
-            dataSource: ds.cloneWithRows([]),
+            dataSource: ds.cloneWithRows(data),
             pressStatus: false,
         };
         this._handleTextChange = this._handleTextChange.bind(this);
         this._handleDeleteButtonPress = this._handleDeleteButtonPress.bind(this);
+    }
+
+    _todoList (){
+        var dataBlob = [];
+        data = getData();
+        for (var ii = 0; ii < data().length; ii++) {
+            alert(ii);
+            dataBlob.push(getData[ii]["text"]);
+        }
+        return dataBlob;
+    };
+
+    componentDidMount() {
+        //AsyncStorage.getItem('todo').then((value) => alert(value));
+        //AsyncStorage.getItem('todo').then((value) => this.setState({'dataSource': JSON.parse(value))}));
+        //AsyncStorage.getItem('todo').then((value) => alert(JSON.parse(value)[0]["id"]))
+        //alert(this.state.dataSource)
+
     }
 
     _handleTextChange = (value) => {
@@ -30,14 +68,13 @@ export default class App extends Component {
         this.setState(() => ({
             dataSource: this.state.dataSource.cloneWithRows(textArray),
             inputValue: '',
+            pressStatus: false
         }));
     };
 
     _handleDeleteButtonPress = (id) => {
         this.setState((a) => {
-
             const newItem = a.dataSource._dataBlob.s1.filter((item, i) => (parseInt(id) !== i));
-            alert(newItem);
             return {
                 dataSource: this.state.dataSource.cloneWithRows(newItem),
             }
@@ -45,10 +82,8 @@ export default class App extends Component {
     };
 
     _changeStyle = (id) => {
+        alert(JSON.stringify(this.state.dataSource._dataBlob))
         if (this.state.pressStatus == false) {
-            const blob = this.state.dataSource._dataBlob;
-            alert(blob)
-            alert(this.state.dataSource[id])
             this.setState(() => {
                 return {
                     pressStatus: true,
@@ -96,9 +131,9 @@ export default class App extends Component {
                                 onPress={handleStyle}
                                 style={styles.todoText}
                             >
-                            <View
-                                style={this.state.pressStatus ? styles.todoItemCompleted : styles.todoItem}
-                            >
+                                <View
+                                    style={this.state.pressStatus ? styles.todoItemCompleted : styles.todoItem}
+                                >
                                     <View style={styles.todoText}>
                                         <Text >{rowData}</Text>
                                     </View>
@@ -107,7 +142,7 @@ export default class App extends Component {
                                         onPress={handleDelete}
                                         style={styles.deleteButton}
                                     />
-                            </View>
+                                </View>
                             </TouchableWithoutFeedback>
                         );
                     }
