@@ -4,6 +4,7 @@ import { Drawer } from 'material-ui';
 import { Col, Container, Hidden, Row, Visible } from 'react-grid-system';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 // components
 import Home from './components/Home';
@@ -45,6 +46,7 @@ constructor(props) {
       localStorage.username = name;
       localStorage.todo = [];
       localStorage.notes = [];
+      localStorage.events = [];
       localStorage.todoCounter = 0;
       localStorage.notesCounter = 0;
   }
