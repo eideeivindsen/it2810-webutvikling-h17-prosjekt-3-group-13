@@ -35,8 +35,6 @@ let dataList = [
 ];
 
 
-
-
 var dataListOrder = getOrder(dataList);
 
 function getOrder(list) {
@@ -59,11 +57,14 @@ class ListView extends Component {
         }
     }
 
-    componentWillMount() {
-        let firstItem = new TodoModel("Add your first ToDo item", false);
-        let todoList = []
-        todoList.push(firstItem)
-        AsyncStorage.setItem('todo', JSON.stringify(todoList));
+    async componentWillMount() {
+        let value = await AsyncStorage.getItem('todo');
+        if (value === null) {
+            let firstItem = new TodoModel("Add your first ToDo item", false);
+            let todoList = []
+            todoList.push(firstItem)
+            AsyncStorage.setItem('todo', JSON.stringify(todoList));
+        }
 
     }
 
