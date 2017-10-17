@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Drawer } from 'material-ui';
 import { Col, Container, Hidden, Row, Visible } from 'react-grid-system';
@@ -14,7 +14,7 @@ import ToDo from './components/ToDo';
 import Navbar from './components/Navbar';
 import NotFound from './components/NotFound';
 
-export default class App extends React.Component {
+class App extends Component {
 
 constructor(props) {
     super(props);
@@ -83,3 +83,5 @@ constructor(props) {
     );
   }
 }
+
+export default App;

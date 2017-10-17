@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Card, Checkbox,  Divider, RaisedButton, Subheader } from 'material-ui';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import { NavLink } from 'react-router-dom';
 
-export default class HomeScreenTodo extends React.Component {
+class HomeScreenTodo extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -73,5 +73,7 @@ export default class HomeScreenTodo extends React.Component {
             </NavLink>
         </div>
     );
+    }
   }
-  }
+
+ export default HomeScreenTodo;

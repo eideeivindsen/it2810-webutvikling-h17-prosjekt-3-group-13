@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Avatar, Divider, ListItem, MenuItem } from 'material-ui';
 import { red500 } from 'material-ui/styles/colors';
 import { Hidden } from 'react-grid-system';
@@ -11,7 +11,7 @@ import CloseIcon from 'material-ui/svg-icons/navigation/close';
 import { NavLink } from 'react-router-dom';
 
 
-export default class Navbar extends React.Component {
+class Navbar extends Component {
 
     handleTouchTap() {
         if (window.innerWidth < 992) {
@@ -42,3 +42,5 @@ export default class Navbar extends React.Component {
     );
   }
 }
+
+export default Navbar;

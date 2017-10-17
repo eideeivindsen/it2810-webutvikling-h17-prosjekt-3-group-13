@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Col, Container, Row } from 'react-grid-system';
-import {Card, Subheader } from 'material-ui';
 import { Link } from 'react-router-dom';
 
 // Components

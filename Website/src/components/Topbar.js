@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { AppBar } from 'material-ui';
 import { Hidden, Visible } from 'react-grid-system';
 
-export default class Topbar extends React.Component {
+ class Topbar extends Component {
 
 handleTouchTap() {
     this.props.handleDrawerToggle();
@@ -22,3 +22,5 @@ render() {
     );
   }
 }
+
+export default Topbar;
