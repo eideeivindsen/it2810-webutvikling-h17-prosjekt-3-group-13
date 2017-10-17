@@ -11,7 +11,7 @@ class HomeScreenEvents extends Component {
   constructor() {
     super();
     this.state = {
-      eventList : localStorage.events.length !== 0 ? JSON.parse(localStorage.events) : []
+      eventList : (localStorage.events === undefined || localStorage.events.length === 0) ? [] : JSON.parse(localStorage.events)
     }
   }
 
