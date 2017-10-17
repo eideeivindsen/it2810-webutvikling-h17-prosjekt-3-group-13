@@ -15,6 +15,8 @@ class OmniBox extends Component {
         this.setState({
             newValue: ''
         });
+
+
     }
 
     onChange(event){
@@ -54,18 +56,14 @@ class OmniBox extends Component {
 
 
     async saveData(item) {
-        let todoList = [];
         let todo = await AsyncStorage.getItem('todo');
+        let todoList = JSON.parse(todo);
+        if (todoList != null) {
+            todoList.push(item)
+            alert(JSON.stringify(todoList))
+            AsyncStorage.setItem('todo', JSON.stringify(todoList))
 
-        todoList.push(JSON.parse(todo));
-        todoList.push(item);
-        AsyncStorage.setItem('todo', JSON.stringify(todoList));
-
-
-        //let random = JSON.stringify(item)
-
-        //AsyncStorage.setItem('todo', random);
-
+        }
     }
 
 
