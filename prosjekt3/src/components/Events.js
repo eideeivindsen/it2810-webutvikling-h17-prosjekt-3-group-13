@@ -18,10 +18,8 @@ class Events extends Component {
   constructor() {
     super();
 
-    console.log(localStorage);
-
     this.state = {
-      eventList : localStorage.todo.length !== 0 ? JSON.parse(localStorage.todo) : [],
+      eventList : localStorage.events.length !== 0 ? JSON.parse(localStorage.events) : [],
       staticDialogOpen : false,
       staticDialogId : null,
       staticDialogTitle : '',
@@ -137,8 +135,6 @@ class Events extends Component {
         this.updateLocalStorage();
     });
 
-    console.log(this.state);
-
     this.handleAddEventDialogClose();
   }
 
@@ -159,7 +155,7 @@ class Events extends Component {
       localStorage.setItem("events", JSON.stringify(this.state.eventList));
   }
 
-  endAccessor = (event) => {
+  endAccessor(event) {
     let end = new Date(event.end);
     return end.setHours(end.getHours() + 1);
   };
@@ -180,31 +176,6 @@ class Events extends Component {
     ];
 
     const addEventDialogActions = [
-      <TextField
-        hintText="Title of event"
-        value={this.state.addEventDialogTitle}
-        onChange={ event => this.handleAddEventTitleChange(event) }
-      />,
-      <DatePicker
-        hintText="Start date"
-        onChange={ (event, date) => this.handleChangeStartDate(event, date)}
-        value={this.state.addEventDialogStartDate}
-        autoOk={true}
-      />,
-      <DatePicker
-        hintText="End date"
-        onChange={ (event, date) => this.handleChangeEndDate(event, date)}
-        value={this.state.addEventDialogEndDate}
-        autoOk={true}
-      />,
-      <TextField
-        floatingLabelText="Description of event"
-        multiLine={true}
-        rows={4}
-        rowsMax={11}
-        value={this.state.addEventDialogDesc}
-        onChange={ event => this.handleAddEventDescChange(event) }
-      />,
       <FlatButton
         label="Close"
         primary={true}
@@ -228,8 +199,8 @@ class Events extends Component {
                 culture={'en-GB'}
                 events={this.state.eventList}
                 views={['month', 'agenda']}
-                onSelectEvent={event => this.handleStaticDialogOpen(event)}
-                onSelectSlot={(slotInfo) => this.handleAddEventDialogOpen(slotInfo.start, slotInfo.end)}
+                onSelectEvent={ (event) => this.handleStaticDialogOpen(event)}
+                onSelectSlot={ (slotInfo) => this.handleAddEventDialogOpen(slotInfo.start, slotInfo.end)}
               />
               <Dialog
                 title={this.state.staticDialogTitle}
@@ -240,13 +211,42 @@ class Events extends Component {
               >
               {this.state.addEventDialogDesc}
               </Dialog>
+
               <Dialog
                 title={'Create new event'}
                 actions={addEventDialogActions}
                 modal={false}
                 open={this.state.addEventDialogOpen}
                 onRequestClose={() => this.handleAddEventDialogClose()}
+              >
+              <TextField
+                hintText="Title of event"
+                floatingLabelText="Title of event"
+                value={this.state.addEventDialogTitle}
+                onChange={ event => this.handleAddEventTitleChange(event) }
               />
+              <DatePicker
+                hintText="Start date"
+                floatingLabelText="Start date"
+                onChange={ (event, date) => this.handleChangeStartDate(event, date)}
+                value={this.state.addEventDialogStartDate}
+                autoOk={true}
+              />
+              <DatePicker
+                hintText="End date"
+                floatingLabelText="End date"
+                onChange={ (event, date) => this.handleChangeEndDate(event, date)}
+                value={this.state.addEventDialogEndDate}
+                autoOk={true}
+              />
+              <TextField
+                floatingLabelText="Description of event"
+                fullWidth={true}
+                multiLine={true}
+                value={this.state.addEventDialogDesc}
+                onChange={ event => this.handleAddEventDescChange(event) }
+              />
+              </Dialog>
             </div>
         </div>
     );
