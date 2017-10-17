@@ -38,8 +38,8 @@ class Events extends Component {
   handleStaticDialogOpen(event) {
     const id = event.id;
     let title = event.title;
-    const start = event.start;
-    const end = event.end;
+    const start = new Date(event.start);
+    const end = new Date(event.end);
     const desc = event.desc;
 
     const startY = start.getFullYear();
@@ -70,6 +70,8 @@ class Events extends Component {
   };
 
   handleAddEventDialogOpen(startDate, endDate) {
+    startDate = new Date(startDate);
+    endDate = new Date(endDate);
     this.setState({
       addEventDialogOpen: true,
       addEventDialogStartDate: startDate,
