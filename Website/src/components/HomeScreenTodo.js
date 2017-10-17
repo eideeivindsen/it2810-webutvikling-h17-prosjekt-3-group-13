@@ -17,7 +17,9 @@ export default class HomeScreenTodo extends React.Component {
     }
 
     tabHasContent() {
-        document.getElementById("todoList").hasChildNodes() ? this.setState({noTaskMessage: ''}) : this.setState({noTaskMessage: "You don't have any tasks today."});
+        if(document.getElementById("todoList") != null) {
+            document.getElementById("todoList").hasChildNodes() ? this.setState({noTaskMessage: ''}) : this.setState({noTaskMessage: "You don't have any tasks today."});
+        }
     }
 
     handleCheck(event, value, id) {
@@ -57,7 +59,7 @@ export default class HomeScreenTodo extends React.Component {
                     {dailyTodo.length > 0 ? dailyTodo.slice(0,4).map((todo) => {
                         return <TableRow key={todo.id} className={todo.checked ? 'checked' : ''}>
                           <TableRowColumn><Checkbox checked={todo.checked} onCheck={(event, value) => this.handleCheck(event, value, todo.id)}/></TableRowColumn>
-                          <TableRowColumn tooltip={todo.task}>{todo.task}</TableRowColumn>
+                          <TableRowColumn>{todo.task}</TableRowColumn>
                         </TableRow>
                       }
                   ) :
