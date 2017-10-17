@@ -8,28 +8,15 @@ export default class UserInput extends Component {
             'name': '',
         };
     }
-
-
+    
     componentDidMount() {
         if (AsyncStorage.getItem('username') != null) {
             AsyncStorage.getItem('username').then((value) => this.setState({ 'name': value }));
         } else {
             this.setState({'name': "Guest"});
         }
-
-
-
-        //const someArray = ["Make a list","Dance","Jump","Die react native"];
-        //return AsyncStorage.setItem('todo', JSON.stringify(someArray))
-        //    .then(json => console.log('success!'))
-        //    .catch(error => console.log('error!'));
-
-
-
-        //AsyncStorage.setItem('todo', JSON.stringify(["Bob", "Peter", "My Todo list"]));
     }
 
-    //AsyncStorage.getItem('todo').then((value) => this.setState({'mylist': JSON.parse(value)}))
 
 
     _onPressButton(value) {
@@ -47,12 +34,11 @@ export default class UserInput extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.todoItem}>
+                <Text style={styles.username}>
                     {this.state.name}
                 </Text>
                 <TextInput autoCapitalize = 'none'
                            ref={(el) => {this.username = el;}}
-                            //onChangeText = {this.setName}
                            onChangeText={(username) => this.setState({username})}
                            value={this.state.username}
                            style={styles.inputForm}
@@ -74,6 +60,7 @@ const styles = StyleSheet.create({
         paddingTop: 30,
     },
     formView: {
+
         borderBottomWidth: 1,
         borderColor: '#ccc',
         paddingBottom: 8,
@@ -86,14 +73,14 @@ const styles = StyleSheet.create({
         padding: 8,
         marginBottom: 8,
     },
-    todoItem: {
+    username: {
         fontSize: 30,
         alignItems: 'center',
         padding: 8,
-
+        backgroundColor: '#00bcd4',
+        color: 'white',
         borderBottomWidth: 1.5,
         borderColor: '#e0e0e0',
-
         flex: 1,
         flexDirection: 'row',
     },

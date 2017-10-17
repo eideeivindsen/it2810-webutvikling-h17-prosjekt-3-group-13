@@ -13,11 +13,29 @@ class OmniBox extends Component {
 
     componentWillMount() {
         this.setState({
-            newValue: ''
+            newValue: '',
         });
-
-
     }
+
+    componentDidMount() {
+        var dataList = this.props.data
+        this.setState({
+            newValue: "a"
+        });
+        this.props.updateDataList(dataList);
+        this.setState({
+            newValue: ""
+        });
+        this.props.updateDataList(dataList);
+    }
+
+
+    _handleTextChange = (value) => {
+        const inputValue = value;
+        this.setState(() => ({
+            newValue: inputValue,
+        }));
+    };
 
     onChange(event){
         var title = event.nativeEvent.text;
@@ -43,6 +61,8 @@ class OmniBox extends Component {
                 });
                 this.props.updateDataList(dataList);
                 return;
+            } else {
+
             }
 
             dataList.unshift(newDataItem);
@@ -59,9 +79,8 @@ class OmniBox extends Component {
         let todo = await AsyncStorage.getItem('todo');
         let todoList = JSON.parse(todo);
         if (todoList != null) {
-            todoList.push(item)
-            alert(JSON.stringify(todoList))
-            AsyncStorage.setItem('todo', JSON.stringify(todoList))
+            todoList.push(item);
+            AsyncStorage.setItem('todo', JSON.stringify(todoList));
 
         }
     }
@@ -75,7 +94,8 @@ class OmniBox extends Component {
                            blurOnSubmit={false}
                            value={this.state.newValue}
                            onKeyPress={this.onKeyPress}
-                           onChange={this.onChange}>
+                           onChange={this.onChange}
+                >
                 </TextInput>
                 <Button
                     title={"Add"}

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import {
     Text,
     View,
+    Button,
     TouchableHighlight,
-    AsyncStorage
+    AsyncStorage,
 } from 'react-native';
 import TodoModel from './TodoModel';
 import OmniBox from './OmniBox';
@@ -16,20 +17,16 @@ async function getData() {
     var myList;
 
     let value = await AsyncStorage.getItem('todo');
-
     if (value !== null){
         myList = JSON.parse(value);
 
         for (var i = 0; i < myList.length; i++) {
-            if (myList[i] != null) {
+            if (myList[i] !== null) {
                 dataList.push(new TodoModel(myList[i].title.toString(), myList[i].completed))
             }
         }
     }
-
 }
-
-getData();
 
 let dataList = [
 ];
@@ -51,6 +48,7 @@ class ListView extends Component {
         super(props);
         this.updateDataList = this.updateDataList.bind(this);
         this._onCompletedChange = this._onCompletedChange.bind(this);
+        this._onDeleteDone = this._onDeleteDone.bind(this);
 
         this.state = {
             dataList: dataList
@@ -58,14 +56,14 @@ class ListView extends Component {
     }
 
     async componentWillMount() {
+        getData();
         let value = await AsyncStorage.getItem('todo');
         if (value === null) {
             let firstItem = new TodoModel("Add your first ToDo item", false);
-            let todoList = []
-            todoList.push(firstItem)
+            let todoList = [];
+            todoList.push(firstItem);
             AsyncStorage.setItem('todo', JSON.stringify(todoList));
         }
-
     }
 
     updateDataList(dataList) {
@@ -81,9 +79,30 @@ class ListView extends Component {
         moveOrderItem(this, fromIndex, toIndex);
     }
 
+    async saveData(item) {
+        AsyncStorage.setItem('todo', JSON.stringify(item));
+    }
+
+    _onDeleteDone() {
+        let todoList = dataList;
+        //alert(JSON.stringify(todoList))
+
+        var activeList = todoList.filter(function(item){
+            return item.completed === false;
+        });
+
+        this.updateDataList(activeList)
+
+        this.setState({dataList: activeList}, function() {
+            this.saveData(activeList)
+        })
+    }
+
+
+
     render() {
         let listView = (<View></View>);
-        if (this.state.dataList.length) {
+        //if (this.state.dataList.length) {
             listView = (
                 <SortableListView
                     ref='listView'
@@ -94,7 +113,7 @@ class ListView extends Component {
                     renderRow={(dataItem, section, index) => <ListViewItem data={dataItem} dataIndex={index} onCompletedChange={this._onCompletedChange}/>}
                 />
             );
-        }
+        //}
 
         return (
             <View style={{flex: 1, marginLeft: 10, marginRight: 10}}>
@@ -102,6 +121,9 @@ class ListView extends Component {
                     data={dataList}
                     updateDataList={this.updateDataList}/>
                 {listView}
+            <View>
+            </View>
+                <Button title={"Delete Done"} onPress={this._onDeleteDone}/>
             </View>
         )
     }
