@@ -52,7 +52,7 @@ export default class UserInput extends Component {
                 </Text>
                 <TextInput autoCapitalize = 'none'
                            ref={(el) => {this.username = el;}}
-                           //onChangeText = {this.setName}
+                            //onChangeText = {this.setName}
                            onChangeText={(username) => this.setState({username})}
                            value={this.state.username}
                            style={styles.inputForm}

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Card, TextField } from 'material-ui';
 
-export default class WelcomeScreen extends React.Component {
+class WelcomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {nameField: ''}
@@ -28,3 +28,5 @@ export default class WelcomeScreen extends React.Component {
     );
   }
 }
+
+export default WelcomeScreen;

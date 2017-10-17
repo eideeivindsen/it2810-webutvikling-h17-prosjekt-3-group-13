@@ -16,16 +16,13 @@ async function getData() {
     var myList;
 
     let value = await AsyncStorage.getItem('todo');
-    alert(value)
+
     if (value !== null){
         myList = JSON.parse(value);
-        alert(myList)
 
-        //dataList.push(new TodoModel(myList.title.toString(), myList.completed))
         for (var i = 0; i < myList.length; i++) {
             if (myList[i] != null) {
                 dataList.push(new TodoModel(myList[i].title.toString(), myList[i].completed))
-
             }
         }
     }
@@ -36,6 +33,7 @@ getData();
 
 let dataList = [
 ];
+
 
 var dataListOrder = getOrder(dataList);
 
@@ -59,6 +57,16 @@ class ListView extends Component {
         }
     }
 
+    async componentWillMount() {
+        let value = await AsyncStorage.getItem('todo');
+        if (value === null) {
+            let firstItem = new TodoModel("Add your first ToDo item", false);
+            let todoList = []
+            todoList.push(firstItem)
+            AsyncStorage.setItem('todo', JSON.stringify(todoList));
+        }
+
+    }
 
     updateDataList(dataList) {
         dataListOrder = getOrder(dataList);
