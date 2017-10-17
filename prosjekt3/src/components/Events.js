@@ -18,7 +18,10 @@ class Events extends Component {
   constructor() {
     super();
 
+    console.log(localStorage);
+
     this.state = {
+      eventList : localStorage.todo.length !== 0 ? JSON.parse(localStorage.todo) : [],
       staticDialogOpen : false,
       staticDialogId : null,
       staticDialogTitle : '',
@@ -27,24 +30,6 @@ class Events extends Component {
       addEventDialogOpen : false,
       addEventDialogStartDate : null,
       addEventDialogEndDate : null,
-      eventList : [
-        {
-          'id': 1,
-          'title': 'Gjør ferdig Webutvikling',
-          'allDay': true,
-          'start': new Date(2017, 9, 4),
-          'end': new Date(2017, 9, 5),
-          'desc': 'Viktig å få gjort ferdig'
-        },
-        {
-          'id': 2,
-          'title': 'AAAA',
-          'allDay': true,
-          'start': new Date(2017, 9, 16),
-          'end': new Date(2017, 9, 17),
-          'desc': 'Viktig å få gjort ferdig'
-        },
-      ],
     }
   }
 
@@ -148,7 +133,9 @@ class Events extends Component {
 
     this.setState(prevState => ({
       eventList : [...prevState.eventList, newEventObject]
-    }));
+    }), function() {
+        this.updateLocalStorage();
+    });
 
     console.log(this.state);
 
@@ -162,8 +149,14 @@ class Events extends Component {
     });
     this.setState({
       eventList: updatedEventList
+    }, function() {
+        this.updateLocalStorage();
     });
     this.handleStaticDialogClose();
+  }
+
+  updateLocalStorage() {
+      localStorage.setItem("events", JSON.stringify(this.state.eventList));
   }
 
   endAccessor = (event) => {

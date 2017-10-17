@@ -214,6 +214,9 @@ span.menuButton div {
 .rbc-row-content {
 	min-height: 70px;
 }
+.rbc-date-cell {
+	z-index: -1;
+}
 .rbc-event {
 	background-color: #00bcd4 !important;
 	transition: all .3s ease-out;

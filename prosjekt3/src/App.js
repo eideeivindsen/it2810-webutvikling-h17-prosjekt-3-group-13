@@ -46,6 +46,7 @@ constructor(props) {
       localStorage.username = name;
       localStorage.todo = [];
       localStorage.notes = [];
+      localStorage.events = [];
       localStorage.todoCounter = 0;
       localStorage.notesCounter = 0;
   }
