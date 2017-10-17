@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-grid-system';
-import {Card, RaisedButton, Subheader } from 'material-ui';
-import { Link, NavLink } from 'react-router-dom';
+import {Card, Subheader } from 'material-ui';
+import { Link } from 'react-router-dom';
 
 // Components
 import WelcomeScreen from './WelcomeScreen';
@@ -11,7 +11,6 @@ import HomeScreenTodo from './HomeScreenTodo';
 import EventIcon from 'material-ui/svg-icons/action/event';
 import NoteIcon from 'material-ui/svg-icons/av/note';
 import ChecklistIcon from 'material-ui/svg-icons/av/playlist-add-check';
-const Logo = require('./../img/logo.png');
 
 export default class Home extends React.Component {
 
