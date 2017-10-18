@@ -2,6 +2,7 @@ import React from 'react';
 import {
     View,
     Image,
+    ScrollView
 } from 'react-native';
 import UserInput from '../home/Input';
 import styles from '../../styles/styles';
@@ -21,12 +22,9 @@ export default class HomeTab extends React.Component {
 
     render() {
         return (
-            <View style={[styles.view]}>
+            <ScrollView style={[styles.view]}>
                 <UserInput/>
-            </View>
+            </ScrollView>
         );
     }
 }
-
-
-//module.exports = 'HomeTab'
