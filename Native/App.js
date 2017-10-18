@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import UserInput from './src/components/home/Input';
-import TodoApp from './src/components/todo/Todo';
 import NotesApp from './src/components/notes/Notes.js';
 import ListView from './src/components/todo2/ListView';
 
@@ -28,10 +27,6 @@ class HomeTab extends React.Component {
     render() {
         return (
             <View style={[styles.view]}>
-                <Button
-                    onPress={() => this.props.navigation.navigate('Notifications')}
-                    title="Go to notifications"
-                />
                 <UserInput/>
             </View>
         );
@@ -39,10 +34,10 @@ class HomeTab extends React.Component {
 }
 
 
+// Tab bar navigation for the whole app
 class EventsTab extends React.Component {
     static navigationOptions = {
         tabBarLabel: 'Events',
-        // Note: By default the icon is only shown on iOS. Search the showIcon option below.
         tabBarIcon: ({ tintColor }) => (
             <Image
                 source={require('./src/img/event.png')}
@@ -156,7 +151,7 @@ const NativeProsjekt3 = TabNavigator({
         },
     }, {
         tabBarPosition: 'bottom',
-        //animationEnabled: true,
+        animationEnabled: true,
         tabBarOptions: {
             activeTintColor: '#000',
             inactiveTintColor: '#eee',
