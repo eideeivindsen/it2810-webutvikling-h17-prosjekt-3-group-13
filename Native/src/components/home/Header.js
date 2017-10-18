@@ -5,9 +5,9 @@ import {
     Image,
     StyleSheet,
     AsyncStorage
-} from 'react-native'
+} from 'react-native';
 
-class Header extends Component {
+export default class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -57,15 +57,6 @@ const styles = StyleSheet.create({
         borderColor: '#e0e0e0',
         flex: 1,
         flexDirection: 'row',
-    },
-    inputForm: {
-        flex: 1,
-        alignItems: 'center',
-        padding: 8,
-        marginBottom: 8,
-    },
-    inputField: {
-        flex: 9
     },
     logo: {
         width: 58,

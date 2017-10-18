@@ -14,7 +14,9 @@ export default class UserInput extends Component {
         super(props);
         this.state = {
             name: '',
-            finalName: ''
+            finalName: '',
+            todoNum: 0,
+            eventNum: 0
         };
         this.getData();
     }
@@ -40,11 +42,33 @@ export default class UserInput extends Component {
     }
 
     async getData() {
-        if (AsyncStorage.getItem('username') !== null) {
+        let todos;
+        let events;
+        try {
             AsyncStorage.getItem('username').then((value) => this.updateUsername(value));
-        } else {
-            this.updateUsername("Guest")
+            todos = await AsyncStorage.getItem('todo');
+            events = await AsyncStorage.getItem('events');
+        } catch (e) {
+
         }
+
+        if (todos != undefined || todos != null) {
+            todos = JSON.parse(todos);
+            todos = todos.length;
+        } else {
+            events = 0;
+        }
+        if (events != undefined || events != null) {
+            events = JSON.parse(events);
+            events = events.length;
+        } else {
+            events = 0;
+        }
+        this.setState({
+            todoNum: todos,
+            eventNum: events
+        })
+
     }
 
     updateUsername(name) {
@@ -62,9 +86,14 @@ export default class UserInput extends Component {
         if (this.state.finalName.length !== 0) {
             welcomeScreen = (
                 <View>
-                    <Text style={{fontSize: 20, marginBottom:30}}>Hello, {this.state.finalName}!</Text>
+                    <Text style={{fontSize: 20, marginBottom:30, alignItems: 'center'}}>Hello, {this.state.finalName}!</Text>
                     <Text style={{fontSize: 20}}>Welcome to your</Text>
                     <Text style={{fontSize: 25}}>Personal Information Planner</Text>
+                    <View>
+                        <Text>Last time you were logged in, you had:</Text>
+                        <Text>{this.state.todoNum} todos</Text>
+                        <Text>{this.state.eventNum} events</Text>
+                    </View>
                 </View>
             )
         }
@@ -74,23 +103,22 @@ export default class UserInput extends Component {
                 <Header
                     name={this.state.finalName}
                 />
-                <View style={{flex:1, flexDirection: 'column', alignItems: 'center', paddingTop: 40,  flex: 9, justifyContent: 'flex-start'}}>
-                    <View style={{alignItems: 'center', paddingTop: 40,  flex: 9, justifyContent: 'flex-start'}}>
+                <View style={styles.nameContainer}>
+                    <View style={{alignItems: 'center', paddingTop: 30,  flex: 9}}>
                         {welcomeScreen}
                     </View>
                 </View>
 
 
-                    <View style={styles.username}>
-                        <TextInput
-                            //ref={(el) => {this.username = el;}}
-                            onChangeText={(username) => this.setState({name: username})}
-                            value={this.state.name}
-                            style={styles.inputForm}
-                            placeholder={"Wish to change name?"}
-                        />
-                        <Button onPress={this._onPressButton.bind(this)} title={"Save"}/>
-                    </View>
+                <View style={styles.username}>
+                    <TextInput
+                        onChangeText={(username) => this.setState({name: username})}
+                        value={this.state.name}
+                        style={styles.inputForm}
+                        placeholder={"Want to change name?"}
+                    />
+                    <Button onPress={this._onPressButton.bind(this)} title={"Save"}/>
+                </View>
             </View>
         )
     }
@@ -102,18 +130,19 @@ export default class UserInput extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
-
+        justifyContent: 'space-between',
+        flexDirection: 'column'
     },
     nameContainer: {
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        backgroundColor: '#00bcd4',
-        flex:1
+        //backgroundColor: '#00bcd4',
+        flexDirection: 'column',
+        alignItems:'center',
+        justifyContent: 'center',
+        paddingTop: 40,
+        flex: 8,
+        paddingBottom: 180
     },
     username: {
-        alignItems: 'flex-end',
-        justifyContent: 'flex-end',
         borderBottomWidth: 1.5,
         borderColor: '#e0e0e0',
         flex: 1,

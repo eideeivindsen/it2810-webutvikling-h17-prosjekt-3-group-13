@@ -5,6 +5,7 @@ import {
     Image,
     ScrollView
 } from 'react-native';
+
 import Events from '../events/Events'
 import styles from '../../styles/styles';
 
