@@ -81,4 +81,4 @@ The app will automatically start in your emulator or real device.
 [create-react-app]: https://github.com/facebookincubator/create-react-app
 [Material UI]: http://www.material-ui.com/#/
 [create-react-native-app]: https://facebook.github.io/react-native/docs/getting-started.html
-[server]: http://it2810-13.idi.ntnu.no:8082/
+[server]: http://it2810-13.idi.ntnu.no:8083/
