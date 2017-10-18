@@ -49,10 +49,6 @@ class EventsTab extends React.Component {
     render() {
         return (
             <View style={[styles.view]}>
-                <Button
-                    onPress={() => this.props.navigation.navigate('Notifications')}
-                    title="Go to notifications"
-                />
                 <UserInput/>
             </View>
         );

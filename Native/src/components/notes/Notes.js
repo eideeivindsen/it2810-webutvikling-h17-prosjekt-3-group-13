@@ -8,7 +8,7 @@ import {
   Button,
   ScrollView,
   KeyboardAvoidingView } from 'react-native';
-
+import Accordion from 'react-native-collapsible/Accordion';
 import Note from './Note';
 
 export default class Notes extends  React.Component {
@@ -32,38 +32,40 @@ export default class Notes extends  React.Component {
     });
 
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.text}>- NOTES -</Text>
+          <Text style={styles.headerText}>- NOTES -</Text>
         </View>
-        <Button style={styles.addButton} title={"Create New Note +"} onPress={() => this.showNewNote()}></Button>
+        <Button title={"+   Create New Note"} onPress={() => this.showNewNote()}></Button>
         {this.state.displayNewNote ?
           <KeyboardAvoidingView  style={styles.textInput}>
             <TextInput
               multiline = {false}
               numberOfLines = {1}
-              style={{margin: 40}}
+              style={styles.titleTextInput}
               onChangeText={(title) => this.setState({noteTitle: title})}
               value={this.state.noteTitle}
               placeholder={"Enter a title..."}
+              underlineColorAndroid="#00bcd4"
             >
             </TextInput>
             <TextInput
               multiline = {true}
               numberOfLines = {6}
-              style={{height: 140, borderColor: 'gray', borderWidth: 1, margin: 5}}
+              style={styles.noteTextInput}
               onChangeText={(text) => this.setState({noteText: text})}
               value={this.state.noteText}
               placeholder={"Fills in your notes..."}
+              underlineColorAndroid="transparent"
             >
             </TextInput>
-            <Button style={styles.addButton} title={"Add note"} onPress={this.addNote.bind(this)}></Button>
+            <Button title={"Add note"} onPress={this.addNote.bind(this)} ></Button>
           </KeyboardAvoidingView >
         : null}
         <ScrollView style={styles.scrollContainer}>
-          {notes}
+            {notes}
         </ScrollView>
-      </View>
+      </ScrollView>
     );
   }
 
@@ -99,22 +101,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-
   header: {
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 10,
     borderBottomColor: '#ddd',
   },
-
-  addButton: {
-    backgroundColor: '#ffaa00',
-    color: '#ffaa00',
+  headerText: {
+    fontSize: 30,
+    fontFamily: 'Verdana',
   },
-
   scrollContainer: {
 
-  }
+  },
+  titleTextInput: {
+    margin: 40,
+  },
+  noteTextInput: {
+    height: 140,
+    borderColor: '#00bcd4',
+    borderWidth: 1,
+    margin: 5}
 
 })
 
