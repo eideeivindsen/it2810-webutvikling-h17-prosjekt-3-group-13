@@ -8,119 +8,13 @@ import {
     Image,
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-import UserInput from './src/components/home/Input';
-import NotesApp from './src/components/notes/Notes';
-import ListView from './src/components/todo2/ListView';
-import Events from './src/components/events/Events';
+
+import HomeTab from './src/components/tabnav/HomeTab';
+import TodoTab from './src/components/tabnav/TodoTab';
+import EventsTab from './src/components/tabnav/EventsTab';
+import NotesTab from './src/components/tabnav/NotesTab';
 
 
-class HomeTab extends React.Component {
-    static navigationOptions = {
-        tabBarLabel: 'Home',
-        tabBarIcon: ({ tintColor }) => (
-            <Image
-                source={require('./src/img/home.png')}
-                style={[styles.icon, {tintColor: tintColor}]}
-            />
-        ),
-
-    };
-
-    render() {
-        return (
-            <View style={[styles.view]}>
-                <UserInput/>
-            </View>
-        );
-    }
-}
-
-
-class EventsTab extends React.Component {
-    static navigationOptions = {
-        tabBarLabel: 'Events',
-        tabBarIcon: ({ tintColor }) => (
-            <Image
-                source={require('./src/img/event.png')}
-                style={[styles.icon, {tintColor: tintColor}]}
-            />
-        ),
-    };
-
-    render() {
-        return (
-
-            <View style={[styles.view]}>
-                <View style={styles.nameContainer}>
-                    <Image source={require('./src/img/logo.png')} style={styles.logo}/>
-                    <Text style={styles.username}>Events</Text>
-                </View>
-                <View style={styles.mainContainer}>
-                    <Events/>
-                </View>
-            </View>
-
-        );
-    }
-}
-
-
-class NotesTab extends React.Component {
-    static navigationOptions = {
-        tabBarLabel: 'Notes',
-        tabBarIcon: ({ tintColor }) => (
-            <Image
-                source={require('./src/img/note.png')}
-                style={[styles.icon, {tintColor: tintColor}]}
-            />
-        ),
-    };
-
-    render() {
-        return (
-            <View style={[styles.view]}>
-                <View style={styles.nameContainer}>
-                    <Image source={require('./src/img/logo.png')} style={styles.logo}/>
-                    <Text style={styles.username}>Notes</Text>
-                </View>
-                <View style={styles.mainContainer}>
-                    <NotesApp/>
-                </View>
-            </View>
-        );
-    }
-}
-
-
-class TodoTab extends React.Component {
-    static navigationOptions = {
-        tabBarLabel: 'ToDo',
-        tabBarIcon: ({ tintColor }) => (
-            <Image
-                source={require('./src/img/todo.png')}
-                style={[styles.icon, {tintColor: tintColor}]}
-            />
-        ),
-    };
-
-    render() {
-        return (
-            <View style={[styles.view]}>
-                <View style={styles.nameContainer}>
-                    <Image source={require('./src/img/logo.png')} style={styles.logo}/>
-                    <Text style={styles.username}>ToDo</Text>
-                </View>
-                <View style={styles.mainContainer}>
-                <ListView/>
-                </View>
-            </View>
-
-        );
-    }
-}
-
-
-// Register tabs here
 const NativeProsjekt3 = TabNavigator({
         HomeTab: {
             screen: HomeTab,
