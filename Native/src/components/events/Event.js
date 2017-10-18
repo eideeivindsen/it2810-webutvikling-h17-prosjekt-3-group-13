@@ -23,6 +23,8 @@ export default class Note extends React.Component {
         <View key={this.props.keyval}>
           <View style={styles.titleContainer}>
             <Text style={styles.titleText}>Subject: {this.props.val.title}</Text>
+            <Text style={styles.titleText}>Subject: {this.props.val.eventStartDate}</Text>
+            <Text style={styles.titleText}>Subject: {this.props.val.eventEndDate}</Text>
             <TouchableOpacity onPress={this.props.deleteNote} style={styles.deleteButton}>
               {/* 'Entypo' is just an Icon component */}
               <Entypo name='trash' style={styles.icon}></Entypo>
@@ -79,18 +81,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: 'black',
     top: 10,
     bottom: 10,
     right: 10,
     borderRadius: 100,
-    padding: 13,
+    padding: 15,
   },
   deleteText: {
     color: '#ffffff'
   },
   icon: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 14,
   }
 })

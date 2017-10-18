@@ -9,8 +9,9 @@ import {
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import UserInput from './src/components/home/Input';
-import NotesApp from './src/components/notes/Notes.js';
+import NotesApp from './src/components/notes/Notes';
 import ListView from './src/components/todo2/ListView';
+import Events from './src/components/events/Events';
 
 class HomeTab extends React.Component {
     static navigationOptions = {
@@ -49,7 +50,7 @@ class EventsTab extends React.Component {
     render() {
         return (
             <View style={[styles.view]}>
-                <UserInput/>
+                <Events/>
             </View>
         );
     }

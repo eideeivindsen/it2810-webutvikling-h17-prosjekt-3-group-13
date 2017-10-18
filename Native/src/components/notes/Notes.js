@@ -8,7 +8,7 @@ import {
   Button,
   ScrollView,
   KeyboardAvoidingView } from 'react-native';
-import Accordion from 'react-native-collapsible/Accordion';
+
 import Note from './Note';
 
 export default class Notes extends  React.Component {
@@ -21,6 +21,7 @@ export default class Notes extends  React.Component {
       notes: [],
       noteTitle: '',
       noteText: '',
+      displayNewNote: false
     }
   }
 
@@ -38,7 +39,7 @@ export default class Notes extends  React.Component {
         </View>
         <Button title={"+   Create New Note"} onPress={() => this.showNewNote()}></Button>
         {this.state.displayNewNote ?
-          <KeyboardAvoidingView  style={styles.textInput}>
+          <View  style={styles.textInput}>
             <TextInput
               multiline = {false}
               numberOfLines = {1}
@@ -60,7 +61,7 @@ export default class Notes extends  React.Component {
             >
             </TextInput>
             <Button title={"Add note"} onPress={this.addNote.bind(this)} ></Button>
-          </KeyboardAvoidingView >
+          </View >
         : null}
         <ScrollView style={styles.scrollContainer}>
             {notes}
