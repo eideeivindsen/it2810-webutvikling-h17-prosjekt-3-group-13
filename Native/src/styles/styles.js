@@ -17,9 +17,9 @@ const styles = StyleSheet.create({
             flex: 9
         },
         view: {
-            marginTop: (Platform.OS == 'ios') ? 20:0,
             flex: 1,
             flexDirection: 'column',
+            marginTop: (Platform.OS == 'ios') ? 20 : 0,
         },
         icon: {
             width: 26,

@@ -22,45 +22,45 @@ export default class Note extends React.Component {
       <TouchableHighlight onPress={() => {this.showWholeNote()}}>
         <View key={this.props.keyval}>
           <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>Subject: {this.props.val.title}</Text>
-            <Text style={styles.titleText}>Subject: {this.props.val.eventStartDate}</Text>
-            <Text style={styles.titleText}>Subject: {this.props.val.eventEndDate}</Text>
-            <TouchableOpacity onPress={this.props.deleteNote} style={styles.deleteButton}>
+            <Text style={styles.titleText}>Event: {this.props.val.title}</Text>
+            <Text style={styles.titleText}>Start date: {this.props.val.startDate.slice(0, -9).replace('T', ' ')}</Text>
+            <Text style={styles.titleText}>End date: {this.props.val.endDate.slice(0, -9).replace('T', ' ')}</Text>
+            <TouchableOpacity onPress={this.props.deleteEvent} style={styles.deleteButton}>
               {/* 'Entypo' is just an Icon component */}
               <Entypo name='trash' style={styles.icon}></Entypo>
             </TouchableOpacity>
           </View>
 
           {this.state.displayNoteText ?
-            <View style={styles.noteContainer}>
-              <Text style={styles.noteText}>Note: {this.props.val.note}</Text>
+            <View style={styles.eventContainer}>
+              <Text style={styles.eventText}>Description: {this.props.val.event}</Text>
             </View>
             : null}
         </View>
       </TouchableHighlight>
     )
   }
-
   showWholeNote() {
     this.setState({displayNoteText: !this.state.displayNoteText});
   }
 }
+
 const styles = StyleSheet.create({
   titleContainer: {
     position: 'relative',
     padding: 20,
     paddingRight: 100,
     borderBottomWidth: 2,
-    borderBottomColor: '#000000',
+    borderBottomColor: '#ddd',
     backgroundColor: '#00bcd4',
   },
-  noteContainer: {
+  eventContainer: {
     position: 'relative',
     padding: 20,
     paddingRight: 100,
     borderBottomWidth: 2,
-    borderBottomColor: 'black',
-    backgroundColor: 'black',
+    borderBottomColor: '#ddd',
+    backgroundColor: 'white',
   },
   titleText: {
     paddingLeft: 20,
@@ -69,30 +69,28 @@ const styles = StyleSheet.create({
     color: 'white',
 
   },
-  noteText: {
+  eventText: {
     paddingLeft: 20,
-    borderLeftWidth: 3,
     borderLeftColor: 'black',
-    backgroundColor: 'black',
-    color: 'white',
-
+    borderLeftColor: '#ddd',
+    color: '#222',
   },
   deleteButton: {
     position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
     top: 10,
     bottom: 10,
     right: 10,
     borderRadius: 100,
-    padding: 15,
+    paddingRight: 5,
   },
   deleteText: {
     color: '#ffffff'
   },
   icon: {
     color: 'white',
-    fontSize: 14,
+    fontSize: 18,
   }
 })

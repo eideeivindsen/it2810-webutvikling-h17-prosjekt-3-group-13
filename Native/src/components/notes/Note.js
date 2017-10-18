@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingRight: 100,
     borderBottomWidth: 2,
-    borderBottomColor: '#000000',
+    borderBottomColor: '#ddd',
     backgroundColor: '#00bcd4',
   },
   noteContainer: {
@@ -57,23 +57,20 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingRight: 100,
     borderBottomWidth: 2,
-    borderBottomColor: 'black',
-    backgroundColor: 'black',
+    borderBottomColor: 'white',
+    backgroundColor: 'white',
   },
   titleText: {
     paddingLeft: 20,
     borderLeftWidth: 3,
     borderLeftColor: 'white',
     color: 'white',
-
   },
   noteText: {
     paddingLeft: 20,
     borderLeftWidth: 3,
-    borderLeftColor: 'black',
-    backgroundColor: 'black',
-    color: 'white',
-
+    borderLeftColor: '#ddd',
+    color: '#222',
   },
   deleteButton: {
     position: 'absolute',
