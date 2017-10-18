@@ -22,7 +22,7 @@ export default class TodoTab extends React.Component {
 
     render() {
         return (
-            <ScrollView style={[styles.view]}>
+            <View style={[styles.view]}>
                 <View style={styles.nameContainer}>
                     <Image source={require('../../img/logo.png')} style={styles.logo}/>
                     <Text style={styles.username}>ToDo</Text>
@@ -30,7 +30,7 @@ export default class TodoTab extends React.Component {
                 <View style={styles.mainContainer}>
                     <ListView/>
                 </View>
-            </ScrollView>
+            </View>
 
         );
     }
