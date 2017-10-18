@@ -123,7 +123,7 @@ class ListView extends Component {
             );
 
         return (
-            <View style={{flex: 1, marginLeft: 10, marginRight: 10}}>
+            <View style={{flex: 1}}>
                 <OmniBox
                     data={dataList}
                     updateDataList={this.updateDataList}

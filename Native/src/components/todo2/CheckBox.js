@@ -21,7 +21,7 @@ class CheckBox extends Component {
                 color={color}
                 underlayColor='rgba(0,0,0,0)'
                 size={20}
-                iconStyle={{marginLeft: -10, marginRight: 0}}
+                iconStyle={{marginLeft: 5, marginRight: 0}}
                 activeOpacity={1}
                 borderRadius={5}
                 onPress={this.props.onCheckBoxPressed}
