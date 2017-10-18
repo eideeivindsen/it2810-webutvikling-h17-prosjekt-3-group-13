@@ -1,5 +1,6 @@
 import {
     StyleSheet,
+    Platform
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -16,9 +17,9 @@ const styles = StyleSheet.create({
             flex: 9
         },
         view: {
+            marginTop: (Platform.OS == 'ios') ? 20:0,
             flex: 1,
             flexDirection: 'column',
-            paddingTop: 20,
         },
         icon: {
             width: 26,
