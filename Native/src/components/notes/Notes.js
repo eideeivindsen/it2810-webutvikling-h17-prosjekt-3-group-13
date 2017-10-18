@@ -8,7 +8,6 @@ import {
   Button,
   ScrollView,
   KeyboardAvoidingView } from 'react-native';
-import Accordion from 'react-native-collapsible/Accordion';
 import Note from './Note';
 
 export default class Notes extends  React.Component {
