@@ -8,66 +8,78 @@ import {
     Image,
     StyleSheet
 } from 'react-native'
+import Header from './Header'
 
 export default class UserInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            'name': '',
+            name: '',
+            finalName: ''
         };
+        this.getData();
     }
 
-    componentDidMount() {
-        if (AsyncStorage.getItem('username') != null) {
-            AsyncStorage.getItem('username').then((value) => this.setState({ 'name': value }));
-        } else {
-            this.setState({'name': "Guest"});
-        }
-    }
 
     _onPressButton() {
-        let username = this.state.username;
+        let username = this.state.name;
         if (username !== null) {
             try {
                 AsyncStorage.setItem('username', username);
-                this.setState({ 'name': username });
-                AsyncStorage.setItem('notes', JSON.stringify([]));
-                AsyncStorage.setItem('todoCounter', JSON.stringify(0));
-                AsyncStorage.setItem('notesCounter', JSON.stringify(0));
+                this.updateUsername(username);
+                this.setState({
+                    finalName: username,
+                    name: ''
+                })
             } catch (error) {
 
             }
         }
     }
 
+    async getData() {
+        if (AsyncStorage.getItem('username') !== null) {
+            AsyncStorage.getItem('username').then((value) => this.updateUsername(value));
+        } else {
+            this.updateUsername("Guest")
+        }
+    }
+
+    updateUsername(name) {
+        this.setState({finalName: name})
+    }
+
     render() {
+
         return (
             <View style={styles.container}>
-                <View style={styles.nameContainer}>
-                    <Image source={require('../../img/logo.png')} style={styles.logo}/>
-                    <Text style={styles.username}>{this.state.name}</Text>
-                </View>
-                <View style={styles.inputField}>
-                <TextInput autoCapitalize = 'none'
-                           ref={(el) => {this.username = el;}}
-                           onChangeText={(username) => this.setState({username})}
-                           value={this.state.username}
-                           style={styles.inputForm}
-                           placeholder={"Enter your name"}
+                <Header
+                    name={this.state.finalName}
                 />
-                <Button onPress={this._onPressButton.bind(this)} title={"Add"}/>
+                <View style={styles.inputField}>
+                    <TextInput
+                               //ref={(el) => {this.username = el;}}
+                               onChangeText={(username) => this.setState({name: username})}
+                               value={this.state.name}
+                               style={styles.inputForm}
+                               placeholder={"Enter your name"}
+                    />
+                    <Button onPress={this._onPressButton.bind(this)} title={"Add"}/>
                 </View>
             </View>
         )
     }
 }
 
+
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: 30,
+
     },
     nameContainer: {
         flexDirection: 'row',
