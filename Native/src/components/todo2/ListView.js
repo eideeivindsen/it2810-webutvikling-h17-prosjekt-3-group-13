@@ -66,7 +66,6 @@ class ListView extends Component {
 
 
     updateDataList(dataList) {
-        alert("Updated")
         dataListOrder = getOrder(dataList);
         this.setState({
             dataList: dataList
