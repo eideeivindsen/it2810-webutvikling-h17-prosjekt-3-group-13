@@ -56,7 +56,7 @@ export default class Notes extends  React.Component {
               numberOfLines = {1}
               style={styles.titleTextInput}
               onChangeText={(title) => this.setState({eventTitle: title})}
-              value={this.state.noteTitle}
+              value={this.state.eventTitle}
               placeholder={"Enter an event title..."}
               underlineColorAndroid="#00bcd4"
             >
@@ -66,7 +66,7 @@ export default class Notes extends  React.Component {
               numberOfLines = {6}
               style={styles.noteTextInput}
               onChangeText={(text) => this.setState({eventDescription: text})}
-              value={this.state.noteText}
+              value={this.state.eventText}
               placeholder={"Description..."}
               underlineColorAndroid="transparent"
             >
@@ -102,13 +102,7 @@ export default class Notes extends  React.Component {
             </View>
           </KeyboardAvoidingView >
           : null}
-            <View>
-              <TouchableOpacity onPress={this.props.deleteNote} style={styles.deleteButton}>
-                {/* 'FontAwesome' is just an Icon component */}
-
-              </TouchableOpacity>
-            </View>
-        <ScrollView style={styles.scrollContainer}>
+        <ScrollView>
           {events}
         </ScrollView>
       </ScrollView>
@@ -125,11 +119,10 @@ export default class Notes extends  React.Component {
       })
       this.setState({events: this.state.events})
       await AsyncStorage.setItem('events', JSON.stringify(this.state.events));
-
       this.setState({eventStartDate: ''})
       this.setState({eventEndDate: ''})
-      this.setState({noteTitle: ''})
-      this.setState({noteText: ''})
+      this.setState({eventTitle: ''})
+      this.setState({eventText: ''})
       this.showNewEvent();
     }
 
