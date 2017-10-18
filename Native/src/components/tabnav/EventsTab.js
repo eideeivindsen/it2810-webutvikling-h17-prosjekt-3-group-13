@@ -3,9 +3,10 @@ import {
     Text,
     View,
     Image,
+    ScrollView
 } from 'react-native';
 // import events
-//import ListView from '../todo2/ListView';
+//import Events from '../events/Events';
 import styles from '../../styles/styles';
 
 
@@ -22,15 +23,15 @@ export default class EventsTab extends React.Component {
 
     render() {
         return (
-            <View style={[styles.view]}>
+            <ScrollView style={[styles.view]}>
                 <View style={styles.nameContainer}>
                     <Image source={require('../../img/logo.png')} style={styles.logo}/>
-                    <Text style={styles.username}>ToDo</Text>
+                    <Text style={styles.username}>Events</Text>
                 </View>
                 <View style={styles.mainContainer}>
 
                 </View>
-            </View>
+            </ScrollView>
 
         );
     }

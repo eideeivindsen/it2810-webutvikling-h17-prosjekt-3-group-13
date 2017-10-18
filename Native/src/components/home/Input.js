@@ -5,7 +5,6 @@ import {
     View,
     TextInput,
     Button,
-    Image,
     StyleSheet
 } from 'react-native'
 import Header from './Header'
@@ -20,10 +19,9 @@ export default class UserInput extends Component {
         this.getData();
     }
 
-
     _onPressButton() {
         let username = this.state.name;
-        if (username !== null) {
+        if (username.length !== 0) {
             try {
                 AsyncStorage.setItem('username', username);
                 this.updateUsername(username);
@@ -34,6 +32,10 @@ export default class UserInput extends Component {
             } catch (error) {
 
             }
+        } else {
+            this.setState({
+                finalName: 'Guest'
+            })
         }
     }
 
@@ -50,22 +52,45 @@ export default class UserInput extends Component {
     }
 
     render() {
+        let welcomeScreen = (
+            <View>
+                <Text style={{fontSize: 20}}>Welcome to your</Text>
+                <Text style={{fontSize: 25}}>Personal Information Planner</Text>
+            </View>
+        )
+
+        if (this.state.finalName.length !== 0) {
+            welcomeScreen = (
+                <View>
+                    <Text style={{fontSize: 20, marginBottom:30}}>Hello, {this.state.finalName}!</Text>
+                    <Text style={{fontSize: 20}}>Welcome to your</Text>
+                    <Text style={{fontSize: 25}}>Personal Information Planner</Text>
+                </View>
+            )
+        }
 
         return (
             <View style={styles.container}>
                 <Header
                     name={this.state.finalName}
                 />
-                <View style={styles.inputField}>
-                    <TextInput
-                               //ref={(el) => {this.username = el;}}
-                               onChangeText={(username) => this.setState({name: username})}
-                               value={this.state.name}
-                               style={styles.inputForm}
-                               placeholder={"Enter your name"}
-                    />
-                    <Button onPress={this._onPressButton.bind(this)} title={"Add"}/>
+                <View style={{flex:1, flexDirection: 'column', alignItems: 'center', paddingTop: 40,  flex: 9, justifyContent: 'flex-start'}}>
+                    <View style={{alignItems: 'center', paddingTop: 40,  flex: 9, justifyContent: 'flex-start'}}>
+                        {welcomeScreen}
+                    </View>
                 </View>
+
+
+                    <View style={styles.username}>
+                        <TextInput
+                            //ref={(el) => {this.username = el;}}
+                            onChangeText={(username) => this.setState({name: username})}
+                            value={this.state.name}
+                            style={styles.inputForm}
+                            placeholder={"Wish to change name?"}
+                        />
+                        <Button onPress={this._onPressButton.bind(this)} title={"Save"}/>
+                    </View>
             </View>
         )
     }
@@ -77,8 +102,7 @@ export default class UserInput extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+
 
     },
     nameContainer: {
@@ -88,11 +112,8 @@ const styles = StyleSheet.create({
         flex:1
     },
     username: {
-        fontSize: 30,
-        justifyContent: 'center',
-        padding: 8,
-
-        color: 'white',
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
         borderBottomWidth: 1.5,
         borderColor: '#e0e0e0',
         flex: 1,

@@ -3,6 +3,7 @@ import {
     Text,
     View,
     Image,
+    ScrollView
 } from 'react-native';
 import Notes from '../notes/Notes';
 import styles from '../../styles/styles';
@@ -21,15 +22,15 @@ export default class NotesTab extends React.Component {
 
     render() {
         return (
-            <View style={[styles.view]}>
+            <ScrollView style={[styles.view]}>
                 <View style={styles.nameContainer}>
                     <Image source={require('../../img/logo.png')} style={styles.logo}/>
-                    <Text style={styles.username}>ToDo</Text>
+                    <Text style={styles.username}>Notes</Text>
                 </View>
                 <View style={styles.mainContainer}>
                     <Notes/>
                 </View>
-            </View>
+            </ScrollView>
 
         );
     }
