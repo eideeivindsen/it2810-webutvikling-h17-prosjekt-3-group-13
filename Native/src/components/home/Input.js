@@ -21,6 +21,12 @@ export default class UserInput extends Component {
         this.getData();
     }
 
+    componentWillMount() {
+        if (this.state.finalName.length === 0) {
+            this.state.finalName != "Guest";
+        }
+    }
+
     _onPressButton() {
         let username = this.state.name;
         if (username.length !== 0) {
