@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import UserInput from './src/components/home/Input';
+import NotesApp from './src/components/notes/Notes.js';
 import ListView from './src/components/todo2/ListView';
 
 class HomeTab extends React.Component {
@@ -20,6 +21,7 @@ class HomeTab extends React.Component {
                 style={[styles.icon, {tintColor: tintColor}]}
             />
         ),
+
     };
 
     render() {
@@ -73,11 +75,7 @@ class NotesTab extends React.Component {
     render() {
         return (
             <View style={[styles.view]}>
-                <Button
-                    onPress={() => this.props.navigation.navigate('Notifications')}
-                    title="Go to notifications"
-                />
-                <UserInput/>
+                <NotesApp/>
             </View>
         );
     }
@@ -164,6 +162,7 @@ const NativeProsjekt3 = TabNavigator({
                 backgroundColor: '#00bcd4',
 
             },
+            showIcon: true
         }
 
     },
