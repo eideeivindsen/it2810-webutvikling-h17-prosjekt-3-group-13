@@ -1,3 +1,5 @@
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-15';
 class LocalStorageMock {
   constructor() {
     this.store = {};
@@ -21,3 +23,5 @@ class LocalStorageMock {
 };
 
 global.localStorage = new LocalStorageMock;
+
+configure({ adapter: new Adapter() });
