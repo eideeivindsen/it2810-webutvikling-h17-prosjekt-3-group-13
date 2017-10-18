@@ -20,6 +20,7 @@ class Notes extends Component {
           showWarningMessage: false,
           showRemovedMessage: false,
           dialogOpen: false,
+          activeNoteId: -1,
             }
         };
 
@@ -39,6 +40,7 @@ class Notes extends Component {
             date: new Date(),
             currentId: this.state.notesCounter,
             newNote: true,
+            activeNoteId: -1,
         })
     }
 
@@ -49,6 +51,7 @@ class Notes extends Component {
             date: note.date,
             currentId: note.id,
             newNote: false,
+            activeNoteId: note.id,
         })
     }
 
@@ -86,6 +89,7 @@ class Notes extends Component {
     }
 
     handleOnSave(event) {
+        this.setState({activeNoteId: this.state.currentId})
         if(this.state.subject.length === 0) {
             this.setState({showWarningMessage: true});
             return;
@@ -144,7 +148,7 @@ class Notes extends Component {
                                 <Divider />
                                 {
                                     sortedNotes.map((note) =>
-                                    <ListItem className="noteEntry" key={note.id} primaryText={note.subject.slice(0,36).trim()} onClick={() => this.handleEditNote(note)} secondaryText={note.note.slice(0,30).trim() + '...'} rightIcon={<DeleteIcon onClick={() => this.openDialog()}/>} />
+                                    <ListItem className={"noteEntry " + (this.state.activeNoteId === note.id ? 'activeNote' : '')} key={note.id} primaryText={note.subject.slice(0,36).trim()} onClick={() => this.handleEditNote(note)} secondaryText={note.note.slice(0,30).trim() + '...'} rightIcon={<DeleteIcon onClick={() => this.openDialog()}/>} />
                                 )}
                                 <Dialog modal={false} open={this.state.dialogOpen}  onRequestClose={() => this.handleRemove(false)} actions={[
                                           <FlatButton

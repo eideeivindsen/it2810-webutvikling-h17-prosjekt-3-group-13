@@ -184,6 +184,10 @@ span.menuButton div {
     transform: scale(1.1);
 }
 
+.notesList .activeNote {
+	background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
 @media (max-width: 767px) {
 	.notesEditor {
 	    margin-top: 20px;
