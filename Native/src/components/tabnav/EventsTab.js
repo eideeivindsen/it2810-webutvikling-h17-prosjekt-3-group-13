@@ -5,8 +5,8 @@ import {
     Image,
     ScrollView
 } from 'react-native';
-// import events
-//import Events from '../events/Events';
+
+import Events from '../events/Events';
 import styles from '../../styles/styles';
 
 
@@ -29,7 +29,7 @@ export default class EventsTab extends React.Component {
                     <Text style={styles.username}>Events</Text>
                 </View>
                 <View style={styles.mainContainer}>
-
+                    <Events/>
                 </View>
             </ScrollView>
 
