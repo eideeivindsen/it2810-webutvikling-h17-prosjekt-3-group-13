@@ -10,7 +10,6 @@ class ToDo extends Component {
 
 constructor(props) {
     super(props);
-    console.log(localStorage);
     this.state = {
       todo: localStorage.todo.length !== 0 ? JSON.parse(localStorage.todo) : [],
       todoCounter: parseInt(localStorage.todoCounter, 10),
