@@ -153,7 +153,7 @@ const NativeProsjekt3 = TabNavigator({
         },
     }, {
         tabBarPosition: 'bottom',
-        //animationEnabled: true,
+        animationEnabled: true,
         tabBarOptions: {
             activeTintColor: '#000',
             inactiveTintColor: '#eee',

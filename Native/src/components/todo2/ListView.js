@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {
-    Text,
     View,
     Button,
-    TouchableHighlight,
     AsyncStorage,
 } from 'react-native';
 import TodoModel from './TodoModel';
@@ -66,7 +64,9 @@ class ListView extends Component {
         }
     }
 
+
     updateDataList(dataList) {
+        alert("Updated")
         dataListOrder = getOrder(dataList);
         this.setState({
             dataList: dataList
@@ -85,7 +85,6 @@ class ListView extends Component {
 
     _onDeleteDone() {
         let todoList = dataList;
-        //alert(JSON.stringify(todoList))
 
         var activeList = todoList.filter(function(item){
             return item.completed === false;

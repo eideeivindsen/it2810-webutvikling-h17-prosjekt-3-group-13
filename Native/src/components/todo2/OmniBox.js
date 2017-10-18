@@ -18,15 +18,7 @@ class OmniBox extends Component {
     }
 
     componentDidMount() {
-        var dataList = this.props.data
-        this.setState({
-            newValue: "a"
-        });
-        this.props.updateDataList(dataList);
-        this.setState({
-            newValue: ""
-        });
-        this.props.updateDataList(dataList);
+
     }
 
 
@@ -41,10 +33,14 @@ class OmniBox extends Component {
         var title = event.nativeEvent.text;
         var dataList = this.props.data.filter((item) => item.title.match(new RegExp('.*' + title +'.*', 'gi')));
 
-        this.setState({
-            newValue: title
-        });
+        if (title !== "") {
+            this.setState({
+                newValue: title
+            });
+
+        }
         this.props.updateDataList(dataList);
+
     }
 
 
