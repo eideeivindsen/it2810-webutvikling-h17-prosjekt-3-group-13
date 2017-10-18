@@ -7,8 +7,10 @@ import {
   StyleSheet,
   Button,
   ScrollView,
-  KeyboardAvoidingView } from 'react-native';
+  KeyboardAvoidingView,
+  TouchableOpacity} from 'react-native';
 import DatePicker from 'react-native-datepicker';
+import Entypo from 'react-native-vector-icons/Entypo';
 import Event from './Event';
 
 export default class Notes extends  React.Component {
@@ -24,6 +26,7 @@ export default class Notes extends  React.Component {
       eventStartDate: '',
       eventEndDate: '',
       displayNewEvent: false,
+      eventsIsSorted: false,
     }
   }
 
@@ -36,17 +39,23 @@ export default class Notes extends  React.Component {
 
     return (
       <ScrollView style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>- EVENTS -</Text>
+        <View style={styles.sorterContainer}>
+          <Text>Click the icon to sort your events by date: </Text>
+          <TouchableOpacity style={styles.sortingArrows} onPress={this.sortEvents.bind(this)}>
+            <Entypo name='select-arrows' style={styles.icon}></Entypo>
+          </TouchableOpacity>
         </View>
-        <Button title={"+   Register an event"} onPress={() => this.showNewNote()}></Button>
+        <View style={styles.buttonWrapper}>
+          <Button title={"+   Register an event"} onPress={() => this.showNewEvent()}></Button>
+        </View>
+
         {this.state.displayNewEvent ?
-          <View  style={styles.textInput}>
+          <KeyboardAvoidingView style={styles.textInput}>
             <TextInput
               multiline = {false}
               numberOfLines = {1}
               style={styles.titleTextInput}
-              onChangeText={(title) => this.setState({noteTitle: title})}
+              onChangeText={(title) => this.setState({eventTitle: title})}
               value={this.state.noteTitle}
               placeholder={"Enter an event title..."}
               underlineColorAndroid="#00bcd4"
@@ -56,7 +65,7 @@ export default class Notes extends  React.Component {
               multiline = {true}
               numberOfLines = {6}
               style={styles.noteTextInput}
-              onChangeText={(text) => this.setState({noteText: text})}
+              onChangeText={(text) => this.setState({eventDescription: text})}
               value={this.state.noteText}
               placeholder={"Description..."}
               underlineColorAndroid="transparent"
@@ -68,7 +77,7 @@ export default class Notes extends  React.Component {
                 date={this.state.eventStartDate}
                 mode="datetime"
                 placeholder="Select start date"
-                format="YYYY-MM-DD hh:mm a"
+                format="YYYY-MM-DDTHH:MM:SSZ"
                 minDate="2016-06-01"
                 maxDate="2018-06-01"
                 confirmBtnText="Confirm"
@@ -80,7 +89,7 @@ export default class Notes extends  React.Component {
                 date={this.state.eventEndDate}
                 mode="datetime"
                 placeholder="Select end date"
-                format="YYYY-MM-DD hh:mm a"
+                format="YYYY-MM-DDTHH:MM:SSZ"
                 minDate="2016-05-01"
                 maxDate="2018-06-01"
                 confirmBtnText="Confirm"
@@ -88,10 +97,17 @@ export default class Notes extends  React.Component {
                 onDateChange={(date) => {this.setState({eventEndDate: date})}}
               />
             </View>
-
-            <Button title={"Add event"} onPress={this.addEvent.bind(this)} ></Button>
-          </View >
+            <View style={styles.buttonWrapper}>
+              <Button title={"Add event"} onPress={this.addEvent.bind(this)} ></Button>
+            </View>
+          </KeyboardAvoidingView >
           : null}
+            <View>
+              <TouchableOpacity onPress={this.props.deleteNote} style={styles.deleteButton}>
+                {/* 'FontAwesome' is just an Icon component */}
+
+              </TouchableOpacity>
+            </View>
         <ScrollView style={styles.scrollContainer}>
           {events}
         </ScrollView>
@@ -100,17 +116,21 @@ export default class Notes extends  React.Component {
   }
 
   async addEvent(){
-    if(this.state.noteText){
-      this.state.notes.push({
-        'title': this.state.noteTitle,
-        'note': this.state.noteText,
+    if(this.state.eventTitle){
+      this.state.events.push({
+        'title': this.state.eventTitle,
+        'event': this.state.eventDescription,
+        'startDate': this.state.eventStartDate,
+        'endDate': this.state.eventEndDate
       })
-      this.setState({notes: this.state.notes})
-      await AsyncStorage.setItem('events', JSON.stringify(this.state.notes));
+      this.setState({events: this.state.events})
+      await AsyncStorage.setItem('events', JSON.stringify(this.state.events));
 
+      this.setState({eventStartDate: ''})
+      this.setState({eventEndDate: ''})
       this.setState({noteTitle: ''})
       this.setState({noteText: ''})
-      this.showNewNote();
+      this.showNewEvent();
     }
 
   }
@@ -121,26 +141,35 @@ export default class Notes extends  React.Component {
     await AsyncStorage.setItem('events', JSON.stringify(this.state.events));
   }
 
-  showNewNote(){
+  showNewEvent(){
     this.setState({displayNewEvent: !this.state.displayNewEvent});
   }
 
-
+  sortEvents(){
+    if(!this.state.eventsIsSorted){
+      let sortedEvents = this.state.events;
+      sortedEvents.sort(function(a,b) {
+        return new Date(a.startDate).getTime() - new Date(b.startDate).getTime();
+      });
+      this.setState({events: sortedEvents});
+      this.setState({eventsIsSorted: true});
+    }
+    else {
+      let sortedEvents = this.state.events.reverse();
+      this.setState({events: sortedEvents});
+      this.setState({eventsIsSorted: false});
+    }
+  }
 }
+
+
+
+
+
 //END CLASS
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
-  header: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomWidth: 10,
-    borderBottomColor: '#ddd',
-  },
-  headerText: {
-    fontSize: 30,
-    fontFamily: 'Verdana',
   },
   datePickers: {
     justifyContent: 'center',
@@ -158,7 +187,33 @@ const styles = StyleSheet.create({
     height: 140,
     borderColor: '#00bcd4',
     borderWidth: 1,
-    margin: 5}
+    margin: 5
+  },
+  buttonWrapper: {
+    marginBottom: 20,
+  },
+  sorterContainer: {
+    position: 'relative',
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderBottomWidth: 2,
+    backgroundColor: '#ddd',
+  },
+  sortingArrows: {
+      position: 'absolute',
+      justifyContent: 'center',
+      alignItems: 'center',
+      top: 10,
+      bottom: 10,
+      right: 10,
+  },
+  icon: {
+    fontSize: 20,
+  }
+
+
+
+
 
 })
 

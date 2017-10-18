@@ -4,7 +4,7 @@ import {
     View,
     Image,
 } from 'react-native';
-// import events
+import Events from '../events/Events'
 //import ListView from '../todo2/ListView';
 import styles from '../../styles/styles';
 
@@ -28,7 +28,7 @@ export default class EventsTab extends React.Component {
                     <Text style={styles.username}>ToDo</Text>
                 </View>
                 <View style={styles.mainContainer}>
-
+                    <Events/>
                 </View>
             </View>
 

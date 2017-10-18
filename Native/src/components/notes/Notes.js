@@ -34,12 +34,11 @@ export default class Notes extends  React.Component {
 
     return (
       <ScrollView style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>- NOTES -</Text>
+        <View>
+          <Button title={"+   Create New Note"} onPress={() => this.showNewNote()}></Button>
         </View>
-        <Button title={"+   Create New Note"} onPress={() => this.showNewNote()}></Button>
         {this.state.displayNewNote ?
-          <View  style={styles.textInput}>
+          <KeyboardAvoidingView  style={styles.textInput}>
             <TextInput
               multiline = {false}
               numberOfLines = {1}
@@ -60,8 +59,10 @@ export default class Notes extends  React.Component {
               underlineColorAndroid="transparent"
             >
             </TextInput>
-            <Button title={"Add note"} onPress={this.addNote.bind(this)} ></Button>
-          </View >
+            <View style={styles.buttonWrapper}>
+              <Button title={"Add note"} onPress={this.addNote.bind(this)} ></Button>
+            </View>
+          </KeyboardAvoidingView >
         : null}
         <ScrollView style={styles.scrollContainer}>
             {notes}
@@ -102,19 +103,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  header: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomWidth: 10,
-    borderBottomColor: '#ddd',
-  },
-  headerText: {
-    fontSize: 30,
-    fontFamily: 'Verdana',
-  },
-  scrollContainer: {
-
-  },
   titleTextInput: {
     margin: 40,
   },
@@ -122,7 +110,12 @@ const styles = StyleSheet.create({
     height: 140,
     borderColor: '#00bcd4',
     borderWidth: 1,
-    margin: 5}
+    margin: 5
+  },
+  buttonWrapper: {
+    marginTop: 10,
+    marginBottom: 10,
+  }
 
 })
 
