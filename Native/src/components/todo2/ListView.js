@@ -68,12 +68,11 @@ class ListView extends Component {
                     dataList.push(new TodoModel(myList[i].title.toString(), myList[i].completed))
                 }
             }
-            this.setState({
-                dataList: dataList,
-                dataLoaded: true
-            })
-
         }
+        this.setState({
+            dataList: dataList,
+            dataLoaded: true
+        })
     }
 
 

@@ -12,6 +12,7 @@ import UserInput from './src/components/home/Input';
 import NotesApp from './src/components/notes/Notes.js';
 import ListView from './src/components/todo2/ListView';
 
+
 class HomeTab extends React.Component {
     static navigationOptions = {
         tabBarLabel: 'Home',
@@ -34,7 +35,6 @@ class HomeTab extends React.Component {
 }
 
 
-// Tab bar navigation for the whole app
 class EventsTab extends React.Component {
     static navigationOptions = {
         tabBarLabel: 'Events',
@@ -48,9 +48,17 @@ class EventsTab extends React.Component {
 
     render() {
         return (
+
             <View style={[styles.view]}>
-                <UserInput/>
+                <View style={styles.nameContainer}>
+                    <Image source={require('./src/img/logo.png')} style={styles.logo}/>
+                    <Text style={styles.username}>Events</Text>
+                </View>
+                <View style={styles.mainContainer}>
+
+                </View>
             </View>
+
         );
     }
 }
@@ -59,7 +67,6 @@ class EventsTab extends React.Component {
 class NotesTab extends React.Component {
     static navigationOptions = {
         tabBarLabel: 'Notes',
-        // Note: By default the icon is only shown on iOS. Search the showIcon option below.
         tabBarIcon: ({ tintColor }) => (
             <Image
                 source={require('./src/img/note.png')}
@@ -71,11 +78,18 @@ class NotesTab extends React.Component {
     render() {
         return (
             <View style={[styles.view]}>
-                <NotesApp/>
+                <View style={styles.nameContainer}>
+                    <Image source={require('./src/img/logo.png')} style={styles.logo}/>
+                    <Text style={styles.username}>Notes</Text>
+                </View>
+                <View style={styles.mainContainer}>
+                    <NotesApp/>
+                </View>
             </View>
         );
     }
 }
+
 
 class TodoTab extends React.Component {
     static navigationOptions = {
@@ -90,45 +104,19 @@ class TodoTab extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={[styles.view]}>
+                <View style={styles.nameContainer}>
+                    <Image source={require('./src/img/logo.png')} style={styles.logo}/>
+                    <Text style={styles.username}>ToDo</Text>
+                </View>
+                <View style={styles.mainContainer}>
                 <ListView/>
+                </View>
             </View>
 
         );
     }
 }
-
-const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-            justifyContent: 'center',
-            paddingTop: 30,
-            paddingBottom: 10,
-            paddingLeft: 2,
-            paddingRight: 2,
-            backgroundColor: '#F8F8F8',
-        },
-        view: {
-            flex: 1,
-            flexDirection: 'column',
-            paddingTop: 20,
-        },
-        icon: {
-            width: 26,
-            height: 26,
-        },
-        container: {
-            flex: 1,
-            justifyContent: 'center',
-            paddingTop: 30,
-            paddingBottom: 10,
-            paddingLeft: 2,
-            paddingRight: 2,
-            backgroundColor: '#F8F8F8',
-        }
-
-    }
-);
 
 
 // Register tabs here
@@ -163,6 +151,54 @@ const NativeProsjekt3 = TabNavigator({
 
     },
 );
+
+
+
+const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            justifyContent: 'center',
+            paddingTop: 30,
+            paddingBottom: 10,
+            paddingLeft: 2,
+            paddingRight: 2,
+            backgroundColor: '#F8F8F8',
+        },
+        mainContainer: {
+          flex: 9
+        },
+        view: {
+            flex: 1,
+            flexDirection: 'column',
+            paddingTop: 20,
+        },
+        icon: {
+            width: 26,
+            height: 26,
+        },
+        nameContainer: {
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+            backgroundColor: '#00bcd4',
+            flex:1
+        },
+        username: {
+            fontSize: 30,
+            justifyContent: 'center',
+            padding: 8,
+            color: 'white',
+            borderBottomWidth: 1.5,
+            borderColor: '#e0e0e0',
+            flex: 1,
+            flexDirection: 'row',
+        },
+        logo: {
+            width: 58,
+            height:58,
+        }
+    }
+);
+
 
 
 AppRegistry.registerComponent('NativeProsjekt3', () => NativeProsjekt3);
