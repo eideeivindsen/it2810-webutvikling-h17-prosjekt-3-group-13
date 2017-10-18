@@ -28,6 +28,7 @@ class Events extends Component {
       addEventDialogOpen : false,
       addEventDialogStartDate : null,
       addEventDialogEndDate : null,
+      addEventDialogTitle: '',
     }
   }
 
@@ -121,6 +122,10 @@ class Events extends Component {
   }
 
   handleAddEvent() {
+    if (this.state.addEventDialogTitle.length === 0) {
+        this.setState({errorMsgAddEventTitle: 'You need to enter an event title.'});
+        return;
+    }
     const eventId = this.state.addEventDialogStartDate.getFullYear() + this.state.addEventDialogStartDate.getMonth() + this.state.addEventDialogStartDate.getDate() + Math.floor((Math.random() * 9999) + 1);
     const newEventObject = {
       'id': eventId,
@@ -132,6 +137,7 @@ class Events extends Component {
     };
 
     this.setState(prevState => ({
+      errorMsgAddEventTitle: '',
       eventList : [...prevState.eventList, newEventObject]
     }), function() {
         this.updateLocalStorage();
@@ -194,6 +200,8 @@ class Events extends Component {
         <div className="events">
             <Topbar title="Events" handleDrawerToggle={this.props.handleDrawerToggle.bind(this)} />
             <div className="container">
+            <h3>How to:</h3>
+            <p><b>Click on a day</b> and fill out all the fields. <br/> <b>Click and drag</b> to specify a period of time for an event and then fill out the fields.</p>
               <BigCalendar
                 selectable
                 popup
@@ -227,6 +235,7 @@ class Events extends Component {
                 value={this.state.addEventDialogTitle}
                 onChange={ event => this.handleAddEventTitleChange(event) }
               />
+              <p className="errorMsg">{this.state.errorMsgAddEventTitle}</p>
               <DatePicker
                 hintText="Start date"
                 floatingLabelText="Start date"

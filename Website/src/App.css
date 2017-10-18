@@ -310,11 +310,18 @@ span.menuButton div {
 }
 .home .homeScreenEvents .rbc-row-content {
 	min-height: 50px;
+	cursor: default;
+}
+.home .homeScreenEvents .rbc-event {
+	cursor: default;
 }
 
 @media (max-width: 767px) {
 	.homeTodoContainer {
 		margin-bottom: 50px;
+	}
+	.home .container {
+		margin-bottom: 40px !important;
 	}
 }
 
@@ -340,6 +347,10 @@ span.menuButton div {
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
   border-radius: 2px;
   z-index: 1;
+}
+.events .container h3,
+.events .container p b {
+	color: #00bcd4 !important;
 }
 .rbc-month-view,
 .rbc-agenda-view {
@@ -415,4 +426,8 @@ span.menuButton div {
 
 .notFound h1 {
     text-align: center;
+}
+
+.errorMsg {
+	color: #e74c3c;
 }
