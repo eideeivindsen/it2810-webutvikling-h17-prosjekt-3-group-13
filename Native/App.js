@@ -1,11 +1,7 @@
 import React from 'react';
 import {
     AppRegistry,
-    Text,
-    Button,
-    View,
     StyleSheet,
-    Image,
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 

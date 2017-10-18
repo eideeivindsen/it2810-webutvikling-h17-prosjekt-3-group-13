@@ -39,16 +39,15 @@ export default class Notes extends  React.Component {
 
     return (
       <ScrollView style={styles.container}>
+        <View style={styles.buttonWrapper}>
+          <Button title={"Register an event"} onPress={() => this.showNewEvent()}></Button>
+        </View>
         <View style={styles.sorterContainer}>
           <Text>Click the icon to sort your events by date: </Text>
           <TouchableOpacity style={styles.sortingArrows} onPress={this.sortEvents.bind(this)}>
             <Entypo name='select-arrows' style={styles.icon}></Entypo>
           </TouchableOpacity>
         </View>
-        <View style={styles.buttonWrapper}>
-          <Button title={"+   Register an event"} onPress={() => this.showNewEvent()}></Button>
-        </View>
-
         {this.state.displayNewEvent ?
           <KeyboardAvoidingView style={styles.textInput}>
             <TextInput
@@ -155,10 +154,6 @@ export default class Notes extends  React.Component {
   }
 }
 
-
-
-
-
 //END CLASS
 const styles = StyleSheet.create({
   container: {
@@ -182,14 +177,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     margin: 5
   },
-  buttonWrapper: {
-    marginBottom: 20,
-  },
   sorterContainer: {
     position: 'relative',
     paddingTop: 20,
     paddingBottom: 20,
     borderBottomWidth: 2,
+    borderBottomColor: 'white',
     backgroundColor: '#ddd',
   },
   sortingArrows: {
@@ -203,10 +196,6 @@ const styles = StyleSheet.create({
   icon: {
     fontSize: 20,
   }
-
-
-
-
 
 })
 

@@ -5,7 +5,7 @@ import {
     Image,
     ScrollView
 } from 'react-native';
-import ListView from '../todo2/ListView';
+import ListView from '../todo/ListView';
 import styles from '../../styles/styles';
 
 

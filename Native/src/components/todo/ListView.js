@@ -30,7 +30,7 @@ function moveOrderItem(listView, fromIndex, toIndex) {
 
 
 
-class ListView extends Component {
+export default class ListView extends Component {
     constructor(props) {
         super(props);
         this.updateDataList = this.updateDataList.bind(this);
@@ -128,10 +128,8 @@ class ListView extends Component {
                     data={dataList}
                     updateDataList={this.updateDataList}
                 />
-                {listView}
-            <View>
-            </View>
                 <Button title={"Delete Done"} onPress={this._onDeleteDone}/>
+                {listView}
             </View>
         )
         } else {
@@ -146,4 +144,7 @@ class ListView extends Component {
     }
 };
 
-module.exports = ListView;
+
+
+
+

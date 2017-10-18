@@ -67,12 +67,9 @@ const styles = StyleSheet.create({
     borderLeftWidth: 3,
     borderLeftColor: 'white',
     color: 'white',
-
   },
   eventText: {
     paddingLeft: 20,
-    borderLeftColor: 'black',
-    borderLeftColor: '#ddd',
     color: '#222',
   },
   deleteButton: {
@@ -87,7 +84,7 @@ const styles = StyleSheet.create({
     paddingRight: 5,
   },
   deleteText: {
-    color: '#ffffff'
+    color: '#fff'
   },
   icon: {
     color: 'white',

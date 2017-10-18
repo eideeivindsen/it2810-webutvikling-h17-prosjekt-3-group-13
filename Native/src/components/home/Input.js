@@ -14,17 +14,11 @@ export default class UserInput extends Component {
         super(props);
         this.state = {
             name: '',
-            finalName: '',
+            finalName: 'Guest',
             todoNum: 0,
             eventNum: 0
         };
         this.getData();
-    }
-
-    componentWillMount() {
-        if (this.state.finalName.length === 0) {
-            this.state.finalName != "Guest";
-        }
     }
 
     _onPressButton() {
@@ -89,7 +83,7 @@ export default class UserInput extends Component {
             </View>
         )
 
-        if (this.state.finalName.length !== 0) {
+        if (this.state.finalName !== 'Guest') {
             welcomeScreen = (
                 <View>
                     <Text style={{fontSize: 20, marginBottom:30, alignItems: 'center'}}>Hello, {this.state.finalName}!</Text>
@@ -103,7 +97,6 @@ export default class UserInput extends Component {
                 </View>
             )
         }
-
         return (
             <View style={styles.container}>
                 <Header
@@ -131,8 +124,6 @@ export default class UserInput extends Component {
 }
 
 
-
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -146,19 +137,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingTop: 40,
         flex: 8,
-        paddingBottom: 180
+        paddingBottom: 100
     },
     username: {
         borderBottomWidth: 1.5,
         borderColor: '#e0e0e0',
         flex: 1,
         flexDirection: 'row',
+        marginLeft: 10,
+        marginRight: 10,
     },
     inputForm: {
         flex: 1,
         alignItems: 'center',
         padding: 8,
-        marginBottom: 8,
     },
     inputField: {
         flex: 9
@@ -168,3 +160,5 @@ const styles = StyleSheet.create({
         height:58,
     }
 });
+
+

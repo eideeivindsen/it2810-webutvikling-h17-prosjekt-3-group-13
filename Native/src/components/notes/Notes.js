@@ -35,7 +35,7 @@ export default class Notes extends  React.Component {
     return (
       <ScrollView style={styles.container}>
         <View>
-          <Button title={"+   Create New Note"} onPress={() => this.showNewNote()}></Button>
+          <Button title={"Create New Note"} onPress={() => this.showNewNote()}></Button>
         </View>
         {this.state.displayNewNote ?
           <KeyboardAvoidingView  style={styles.textInput}>

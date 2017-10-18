@@ -29,15 +29,13 @@ const styles = StyleSheet.create({
             flexDirection: 'row',
             alignItems: 'flex-start',
             backgroundColor: '#00bcd4',
-            flex:1
+            flex: 1,
         },
         username: {
             fontSize: 30,
             justifyContent: 'center',
             padding: 8,
             color: 'white',
-            borderBottomWidth: 1.5,
-            borderColor: '#e0e0e0',
             flex: 1,
             flexDirection: 'row',
         },
